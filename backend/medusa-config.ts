@@ -45,12 +45,10 @@ module.exports = defineConfig({
       resolve: "@mercurjs/requests",
       options: {},
     },
-    /*
     {
       resolve: '@mercurjs/resend',
       options: {}
     }
-*/
   ],
   modules: [
     {
@@ -72,7 +70,6 @@ module.exports = defineConfig({
       resolve: "@medusajs/medusa/notification",
       options: {
         providers: [
-          /*
           {
             resolve: "@mercurjs/resend/providers/resend",
             id: "resend",
@@ -82,7 +79,6 @@ module.exports = defineConfig({
               from: process.env.RESEND_FROM_EMAIL,
             },
           },
-*/
           {
             resolve: "@medusajs/medusa/notification-local",
             id: "local",
