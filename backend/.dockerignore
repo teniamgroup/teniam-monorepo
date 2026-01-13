@@ -1,0 +1,13 @@
+.git
+.vscode
+node_modules
+.medusa
+dist
+scripts
+*.log
+.env*
+!.env.template
+yarn-error.log
+package-lock.json
+build
+.dev*
