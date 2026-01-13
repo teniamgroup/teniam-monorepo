@@ -28,7 +28,7 @@ module.exports = defineConfig({
       resolve: "@mercurjs/commission",
       options: {},
     },
-    /*
+
     {
       resolve: '@mercurjs/algolia',
       options: {
@@ -36,7 +36,7 @@ module.exports = defineConfig({
         appId: process.env.ALGOLIA_APP_ID
       }
     },
-*/
+
     {
       resolve: "@mercurjs/reviews",
       options: {},
