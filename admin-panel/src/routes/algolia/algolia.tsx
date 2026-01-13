@@ -7,19 +7,50 @@ import {
   Text,
   toast,
 } from "@medusajs/ui";
+import { useQueryClient } from "@tanstack/react-query";
+import { FetchError } from "@medusajs/js-sdk";
 
-import { useAlgolia, useSyncAlgolia } from "@hooks/api/algolia";
+import { useAlgolia, useSyncAlgolia, algoliaQueryKeys } from "@hooks/api/algolia";
 
 export const Algolia = () => {
   const { data: algolia } = useAlgolia();
   const { mutateAsync: triggerSynchronization } = useSyncAlgolia();
+  const queryClient = useQueryClient();
 
   const handleTriggerSynchronization = async () => {
     try {
-      await triggerSynchronization();
-      toast.success("Synchronization triggered!");
-    } catch {
-      toast.error("Error!");
+      const response = await triggerSynchronization();
+      console.log("Sync response:", response);
+      
+      // Check if response has useful information
+      if (response && typeof response === 'object') {
+        if ('error' in response) {
+          toast.error(response.error as string);
+
+          return;
+        }
+        if ('message' in response) {
+          toast.success(response.message as string);
+        } else {
+          toast.success("Synchronization triggered! Refreshing status...");
+        }
+      } else {
+        toast.success("Synchronization triggered! Refreshing status...");
+      }
+      
+      // Refetch the status after a longer delay to allow sync to complete
+      setTimeout(() => {
+        queryClient.invalidateQueries({ queryKey: algoliaQueryKeys.all });
+      }, 5000);
+    } catch (error) {
+      console.error("Sync error:", error);
+      let errorMessage = "Failed to trigger synchronization";
+      if (error instanceof FetchError) {
+        errorMessage = error.message || `Error ${error.status}: ${error.message}`;
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      toast.error(errorMessage);
     }
   };
 

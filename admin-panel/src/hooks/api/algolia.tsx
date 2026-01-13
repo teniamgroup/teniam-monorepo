@@ -8,16 +8,20 @@ export const algoliaQueryKeys = queryKeysFactory("algolia");
 
 export const useSyncAlgolia = () => {
   return useMutation({
-    mutationFn: () =>
-      sdk.client.fetch("/admin/algolia", {
+    mutationFn: async () => {
+      const response = await sdk.client.fetch("/admin/algolia", {
         method: "POST",
-      }),
+      });
+
+      // Return the actual response so we can inspect it
+      return response;
+    },
   });
 };
 
 export const useAlgolia = () => {
   return useQuery<AlgoliaStatus>({
-    queryKey: ["algolia"],
+    queryKey: algoliaQueryKeys.all,
     queryFn: () => sdk.client.fetch("/admin/algolia", { method: "GET" }),
   });
 };
