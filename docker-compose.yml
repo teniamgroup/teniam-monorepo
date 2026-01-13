@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-medusa-db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-db
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: supersecretjwt
+      COOKIE_SECRET: supersecretcookie
+      STORE_CORS: http://localhost:8000
+      ADMIN_CORS: http://localhost:7001
+      VENDOR_CORS: http://localhost:7002
+      AUTH_CORS: http://localhost:8000,http://localhost:7001,http://localhost:7002
+      STRIPE_SECRET_API_KEY: ${STRIPE_SECRET_API_KEY}
+    ports:
+      - "9000:9000"
+    depends_on:
+      - postgres
+      - redis
+
+  admin-panel:
+    build:
+      context: ./admin-panel
+      dockerfile: Dockerfile
+      args:
+        VITE_MEDUSA_BACKEND_URL: http://localhost:9000
+    ports:
+      - "7001:3000"
+    depends_on:
+      - backend
+
+  vendor-panel:
+    build:
+      context: ./vendor-panel
+      dockerfile: Dockerfile
+      args:
+        VITE_MEDUSA_BACKEND_URL: http://localhost:9000
+    ports:
+      - "7002:3000"
+    depends_on:
+      - backend
+
+  storefront:
+    build:
+      context: ./storefront
+      dockerfile: Dockerfile
+      args:
+        MEDUSA_BACKEND_URL: http://localhost:9000
+        NEXT_PUBLIC_BASE_URL: http://localhost:8000
+    ports:
+      - "8000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

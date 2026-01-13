@@ -1,0 +1,10 @@
+node_modules
+dist
+build
+.git
+.vscode
+*.log
+.env*
+!.env.template
+package-lock.json
+yarn.lock
