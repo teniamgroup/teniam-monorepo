@@ -1,0 +1,27 @@
+name = "mercur-marketplace-backend"
+compatibility_date = "2026-01-13"
+main = "src/index.ts"
+
+# Node.js compatibility mode (required for Medusa.js)
+node_compat = true
+
+# Environment variables (set these via wrangler secret put or in Cloudflare dashboard)
+# [vars]
+# DATABASE_URL = ""
+# REDIS_URL = ""
+# STORE_CORS = ""
+# ADMIN_CORS = ""
+# VENDOR_CORS = ""
+# AUTH_CORS = ""
+# JWT_SECRET = ""
+# COOKIE_SECRET = ""
+# STRIPE_SECRET_API_KEY = ""
+
+# Uncomment if you need to use KV, Durable Objects, or other Cloudflare services
+# [[kv_namespaces]]
+# binding = "MY_KV_NAMESPACE"
+# id = "your-kv-namespace-id"
+
+# [[durable_objects.bindings]]
+# name = "MY_DURABLE_OBJECT"
+# class_name = "MyDurableObject"

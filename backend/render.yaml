@@ -1,0 +1,42 @@
+services:
+  # Medusa Backend Web Service
+  - type: web
+    name: teniam-backend
+    env: node
+    region: oregon
+    plan: starter
+    # If deploying from monorepo root, uncomment the line below:
+    # rootDir: backend
+    buildCommand: yarn install --frozen-lockfile && yarn build
+    # Start command without migrations/seeding (database already set up on Neon)
+    startCommand: yarn start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Neon database connection string (set manually in Render dashboard)
+      - key: DATABASE_URL
+        sync: false
+      # Redis URL (set manually if using external Redis, or use Render's Redis below)
+      - key: REDIS_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: COOKIE_SECRET
+        generateValue: true
+      - key: STORE_CORS
+        sync: false
+      - key: ADMIN_CORS
+        sync: false
+      - key: VENDOR_CORS
+        sync: false
+      - key: AUTH_CORS
+        sync: false
+      - key: STRIPE_SECRET_API_KEY
+        sync: false
+
+# Optional: Uncomment if you want to use Render's Redis instead of external Redis
+# databases:
+#   - name: mercur-redis
+#     plan: starter
+#     maxmemoryPolicy: allkeys-lru
