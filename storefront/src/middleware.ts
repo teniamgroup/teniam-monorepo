@@ -1,4 +1,4 @@
-import { HttpTypes } from '@medusajs/types';
+import type { HttpTypes } from '@medusajs/types';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { PROTECTED_ROUTES } from './lib/constants';
@@ -67,7 +67,7 @@ async function getRegionMap(cacheId: string) {
 
     // Create a map of country codes to regions.
     regions.forEach((region: HttpTypes.StoreRegion) => {
-      region.countries?.forEach(c => {
+      region.countries?.forEach((c: { iso_2?: string }) => {
         regionMapCache.regionMap.set(c.iso_2 ?? '', region);
       });
     });
