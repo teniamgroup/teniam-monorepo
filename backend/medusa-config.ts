@@ -90,6 +90,24 @@ module.exports = defineConfig({
       },
     },
     {
+      resolve: "@medusajs/medusa/file",
+      options: {
+        providers: [
+          {
+            resolve: "@medusajs/file-s3",
+            id: "s3",
+            options: {
+              access_key_id: process.env.B2_APPLICATION_KEY_ID,
+              secret_access_key: process.env.B2_APPLICATION_KEY,
+              region: process.env.B2_REGION || "us-west-004",
+              bucket: process.env.B2_BUCKET_NAME,
+              endpoint: process.env.B2_ENDPOINT,
+            },
+          },
+        ],
+      },
+    },
+    {
       resolve: '@medusajs/index'
     }
   ],

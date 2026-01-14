@@ -38,6 +38,16 @@ services:
         sync: false
       - key: RESEND_FROM_EMAIL
         sync: false
+      - key: B2_APPLICATION_KEY_ID
+        sync: false
+      - key: B2_APPLICATION_KEY
+        sync: false
+      - key: B2_BUCKET_NAME
+        sync: false
+      - key: B2_REGION
+        sync: false
+      - key: B2_ENDPOINT
+        sync: false
 
 # Optional: Uncomment if you want to use Render's Redis instead of external Redis
 # databases:
