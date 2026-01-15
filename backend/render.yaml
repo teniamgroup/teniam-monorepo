@@ -48,6 +48,14 @@ services:
         sync: false
       - key: B2_ENDPOINT
         sync: false
+      - key: S3_BUCKET
+        sync: false
+      - key: S3_REGION
+        sync: false
+      - key: S3_ACCESS_KEY_ID
+        sync: false
+      - key: S3_SECRET_ACCESS_KEY
+        sync: false
 
 # Optional: Uncomment if you want to use Render's Redis instead of external Redis
 # databases:

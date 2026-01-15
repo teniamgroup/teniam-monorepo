@@ -33,8 +33,8 @@ module.exports = defineConfig({
       resolve: '@mercurjs/algolia',
       options: {
         apiKey: process.env.ALGOLIA_API_KEY,
-        appId: process.env.ALGOLIA_APP_ID
-      }
+        appId: process.env.ALGOLIA_APP_ID,
+      },
     },
 
     {
@@ -47,8 +47,8 @@ module.exports = defineConfig({
     },
     {
       resolve: '@mercurjs/resend',
-      options: {}
-    }
+      options: {},
+    },
   ],
   modules: [
     {
@@ -89,31 +89,30 @@ module.exports = defineConfig({
         ],
       },
     },
-    // Backblaze B2 S3 provider disabled for now - falling back to default
-    // {
-    //   resolve: "@medusajs/medusa/file",
-    //   options: {
-    //     providers: [
-    //       {
-    //         resolve: "@medusajs/file-s3",
-    //         id: "s3",
-    //         options: {
-    //           access_key_id: process.env.B2_APPLICATION_KEY_ID,
-    //           secret_access_key: process.env.B2_APPLICATION_KEY,
-    //           region: process.env.B2_REGION || "us-west-004",
-    //           bucket: process.env.B2_BUCKET_NAME,
-    //           endpoint: process.env.B2_ENDPOINT,
-    //           file_url: process.env.B2_FILE_URL,
-    //           additional_client_config: {
-    //             forcePathStyle: true
-    //           }
-    //         },
-    //       },
-    //     ],
-    //   },
-    // },
     {
-      resolve: '@medusajs/index'
-    }
+      resolve: "@medusajs/medusa/file",
+      options: {
+        providers: [
+          {
+            resolve: "@medusajs/medusa/file-s3",
+            id: "s3",
+            options: {
+              file_url: `https://${process.env.S3_BUCKET}.s3.${process.env.S3_REGION}.backblazeb2.com`,
+              bucket: process.env.S3_BUCKET,
+              region: process.env.S3_REGION,
+              access_key_id: process.env.S3_ACCESS_KEY_ID,
+              secret_access_key: process.env.S3_SECRET_ACCESS_KEY,
+              endpoint: `https://s3.${process.env.S3_REGION}.backblazeb2.com`,
+              additional_client_config: {
+                forcePathStyle: true,
+              },
+            },
+          },
+        ],
+      },
+    },
+    {
+      resolve: "@medusajs/index",
+    },
   ],
 });
