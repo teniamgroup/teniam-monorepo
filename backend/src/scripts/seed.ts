@@ -22,9 +22,39 @@ import {
 export default async function seedMarketplaceData({ container }: ExecArgs) {
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER);
 
+  const getErrorMessage = (error: unknown) => {
+    if (error && typeof error === "object" && "message" in error) {
+      return String((error as { message?: unknown }).message);
+    }
+    return String(error);
+  };
+
+  const shouldSkipError = (message: string) => {
+    const normalized = message.toLowerCase();
+    return (
+      normalized.includes("already exists") ||
+      normalized.includes("already assigned to a region") ||
+      normalized.includes("rule already exists") ||
+      normalized.includes("no fulfillment set found")
+    );
+  };
+
+  const runStep = async (label: string, fn: () => Promise<void>) => {
+    try {
+      await fn();
+    } catch (error) {
+      const message = getErrorMessage(error);
+      if (shouldSkipError(message)) {
+        logger.warn(`${label} skipped: ${message}`);
+        return;
+      }
+      throw error;
+    }
+  };
+
   logger.info("=== Configurations ===");
   logger.info("Creating admin user...");
-  await createAdminUser(container);
+  await runStep("Create admin user", () => createAdminUser(container).then());
   logger.info("Creating default sales channel...");
   const salesChannel = await createSalesChannel(container);
   logger.info("Creating default regions...");
@@ -32,15 +62,23 @@ export default async function seedMarketplaceData({ container }: ExecArgs) {
   logger.info("Creating publishable api key...");
   const apiKey = await createPublishableKey(container, salesChannel.id);
   logger.info("Creating store data...");
-  await createStore(container, salesChannel.id, region.id);
+  await runStep("Create store data", () =>
+    createStore(container, salesChannel.id, region.id).then()
+  );
   logger.info("Creating configuration rules...");
-  await createConfigurationRules(container);
+  await runStep("Create configuration rules", () =>
+    createConfigurationRules(container).then()
+  );
 
   logger.info("=== Example data ===");
   logger.info("Creating product categories...");
-  await createProductCategories(container);
+  await runStep("Create product categories", () =>
+    createProductCategories(container).then()
+  );
   logger.info("Creating product collections...");
-  await createProductCollections(container);
+  await runStep("Create product collections", () =>
+    createProductCollections(container).then()
+  );
   logger.info("Creating seller...");
   const seller = await createSeller(container);
   logger.info("Creating seller stock location...");
@@ -52,9 +90,22 @@ export default async function seedMarketplaceData({ container }: ExecArgs) {
   logger.info("Creating service zone...");
   const fulfillmentSetId = stockLocation.fulfillment_sets?.[0]?.id;
   if (!fulfillmentSetId) {
-    throw new Error(
-      `No fulfillment set found for stock location ${stockLocation.id}`
+    logger.warn(
+      `No fulfillment set found for stock location ${stockLocation.id}. Skipping service zone/shipping setup.`
     );
+    logger.info("Creating seller products...");
+    await runStep("Create seller products", () =>
+      createSellerProducts(container, seller.id, salesChannel.id).then()
+    );
+    logger.info("Creating inventory levels...");
+    await runStep("Create inventory levels", () =>
+      createInventoryItemStockLevels(container, stockLocation.id).then()
+    );
+    logger.info("Creating default commission...");
+    await runStep("Create default commission", () =>
+      createDefaultCommissionLevel(container).then()
+    );
+    return;
   }
   const serviceZone = await createServiceZoneForFulfillmentSet(
     container,
@@ -62,19 +113,27 @@ export default async function seedMarketplaceData({ container }: ExecArgs) {
     fulfillmentSetId
   );
   logger.info("Creating seller shipping option...");
-  await createSellerShippingOption(
-    container,
-    seller.id,
-    seller.name,
-    region.id,
-    serviceZone.id
+  await runStep("Create seller shipping option", () =>
+    createSellerShippingOption(
+      container,
+      seller.id,
+      seller.name,
+      region.id,
+      serviceZone.id
+    ).then()
   );
   logger.info("Creating seller products...");
-  await createSellerProducts(container, seller.id, salesChannel.id);
+  await runStep("Create seller products", () =>
+    createSellerProducts(container, seller.id, salesChannel.id).then()
+  );
   logger.info("Creating inventory levels...");
-  await createInventoryItemStockLevels(container, stockLocation.id);
+  await runStep("Create inventory levels", () =>
+    createInventoryItemStockLevels(container, stockLocation.id).then()
+  );
   logger.info("Creating default commission...");
-  await createDefaultCommissionLevel(container);
+  await runStep("Create default commission", () =>
+    createDefaultCommissionLevel(container).then()
+  );
 
   logger.info("=== Finished ===");
   logger.info(`Publishable api key: ${apiKey.token}`);
