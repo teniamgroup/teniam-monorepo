@@ -8,6 +8,7 @@ import Head from 'next/head';
 
 import { HtmlLangSetter } from '@/components/atoms/HtmlLangSetter/HtmlLangSetter';
 import { retrieveCart } from '@/lib/data/cart';
+import { retrieveCustomer } from '@/lib/data/customer';
 
 import { Providers } from './providers';
 
@@ -19,9 +20,8 @@ const funnelDisplay = Funnel_Display({
 
 export const metadata: Metadata = {
   title: {
-    template: `%s | ${
-      process.env.NEXT_PUBLIC_SITE_NAME || 'Mercur B2C Demo - Marketplace Storefront'
-    }`,
+    template: `%s | ${process.env.NEXT_PUBLIC_SITE_NAME || 'Mercur B2C Demo - Marketplace Storefront'
+      }`,
     default: process.env.NEXT_PUBLIC_SITE_NAME || 'Mercur B2C Demo - Marketplace Storefront'
   },
   description:
@@ -40,6 +40,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const cart = await retrieveCart();
+  const customer = await retrieveCustomer();
 
   const ALGOLIA_APP = process.env.NEXT_PUBLIC_ALGOLIA_ID;
   // default lang updated by HtmlLangSetter
@@ -140,7 +141,7 @@ export default async function RootLayout({
       </Head>
       <body className={`${funnelDisplay.className} relative bg-primary text-secondary antialiased`}>
         <HtmlLangSetter />
-        <Providers cart={cart}>{children}</Providers>
+        <Providers cart={cart as any} customer={customer}>{children}</Providers>
         <Toaster position="top-right" />
       </body>
     </html>
