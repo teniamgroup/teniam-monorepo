@@ -19,12 +19,12 @@ export const Header = async () => {
   const user = await retrieveCustomer().catch(() => null)
   const isLoggedIn = Boolean(user)
   let wishlist: Wishlist[] = []
-  
+
   if (user) {
     const response = await getUserWishlists()
     wishlist = response.wishlists
   }
-  
+
   const regions = await listRegions()
 
   const wishlistCount = wishlist?.[0]?.products.length || 0
@@ -37,14 +37,14 @@ export const Header = async () => {
     <header>
       <div className="flex py-2 lg:px-8 px-4 md:px-5">
         <div className="flex items-center lg:w-1/3">
-          <MobileNavbar
+          {/* <MobileNavbar
             parentCategories={parentCategories}
             categories={categories}
-          />
-          <ParentCategoryLinks 
+          /> */}
+          {/* <ParentCategoryLinks
             parentCategories={parentCategories}
             categories={categories}
-          />
+          /> */}
         </div>
         <div className="flex lg:justify-center lg:w-1/3 items-center pl-4 lg:pl-0">
           <LocalizedClientLink href="/" className="text-2xl font-bold">
@@ -58,7 +58,6 @@ export const Header = async () => {
           </LocalizedClientLink>
         </div>
         <div className="flex items-center justify-end gap-2 lg:gap-4 w-full lg:w-1/3 py-2">
-          <CountrySelector regions={regions} />
           {isLoggedIn && <MessageButton />}
           <UserDropdown isLoggedIn={isLoggedIn} />
           {isLoggedIn && (
@@ -75,7 +74,7 @@ export const Header = async () => {
           <CartDropdown />
         </div>
       </div>
-      <Navbar categories={categories} parentCategories={parentCategories} />
+      {/* <Navbar categories={categories} parentCategories={parentCategories} /> */}
     </header>
   )
 }

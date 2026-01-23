@@ -46,18 +46,20 @@ export function NavUser({
     return (
       <SidebarMenu>
         <SidebarMenuItem>
-          <SidebarMenuButton size="lg" asChild>
-            <button type="button" className="focus:outline-none focus:ring-0 hover:bg-transparent active:bg-transparent" onClick={() => openAuthModal("login")}>
-              <Avatar className="h-8 w-8 rounded-lg bg-muted">
-                <AvatarFallback className="rounded-lg">
-                  <LogIn className="h-4 w-4" />
-                </AvatarFallback>
-              </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">Sign In</span>
-                <span className="truncate text-xs text-muted-foreground">Access your account</span>
-              </div>
-            </button>
+          <SidebarMenuButton
+            size="lg"
+            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+            onClick={() => openAuthModal("login")}
+          >
+            <Avatar className="h-8 w-8 rounded-lg bg-sidebar-accent">
+              <AvatarFallback className="rounded-lg bg-sidebar-accent text-sidebar-accent-foreground">
+                <LogIn className="h-4 w-4" />
+              </AvatarFallback>
+            </Avatar>
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-medium text-sidebar-foreground">Sign In</span>
+              <span className="truncate text-xs text-sidebar-foreground/70">Access your account</span>
+            </div>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>
@@ -78,13 +80,13 @@ export function NavUser({
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage src={displayUser.avatar || undefined} alt={displayUser.name} />
-                <AvatarFallback className="rounded-lg">{displayUser.name.slice(0, 2).toUpperCase()}</AvatarFallback>
+                <AvatarFallback className="rounded-lg bg-sidebar-accent text-sidebar-accent-foreground">{displayUser.name.slice(0, 2).toUpperCase()}</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{displayUser.name}</span>
-                <span className="truncate text-xs">{displayUser.email}</span>
+                <span className="truncate font-medium text-sidebar-foreground">{displayUser.name}</span>
+                <span className="truncate text-xs text-sidebar-foreground/70">{displayUser.email}</span>
               </div>
-              <ChevronsUpDown className="ml-auto size-4" />
+              <ChevronsUpDown className="ml-auto size-4 text-sidebar-foreground" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent

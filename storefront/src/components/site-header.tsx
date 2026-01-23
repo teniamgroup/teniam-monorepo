@@ -117,8 +117,8 @@ export function SiteHeader() {
   return (
     <header className="bg-background sticky top-0 z-50 flex w-full items-center border-b">
       <div className="flex h-14 w-full items-center gap-2 px-4">
-        <Button className="h-8 w-8" variant="ghost" size="icon" onClick={toggleSidebar}>
-          <SidebarIcon />
+        <Button className="h-8 w-8 text-foreground" variant="ghost" size="icon" onClick={toggleSidebar}>
+          <SidebarIcon className="h-5 w-5" />
         </Button>
         <Separator orientation="vertical" className="mr-2 h-full" />
         <Breadcrumb className="hidden sm:block">
@@ -157,7 +157,7 @@ export function SiteHeader() {
           <Button
             variant="ghost"
             size="icon"
-            className="h-9 w-9 text-muted-foreground hover:text-foreground sm:hidden"
+            className="h-9 w-9 text-foreground hover:text-foreground/80 sm:hidden"
             onClick={() => setIsSearchOpen(true)}
           >
             <Search className="h-5 w-5" />
@@ -171,7 +171,7 @@ export function SiteHeader() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-9 w-9 text-muted-foreground hover:text-foreground relative"
+                    className="h-9 w-9 text-foreground hover:text-foreground/80 relative"
                   >
                     <ShoppingBag className="h-5 w-5" />
                     {cartItems.length > 0 && (
@@ -266,7 +266,7 @@ export function SiteHeader() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-9 w-9 text-muted-foreground hover:text-foreground"
+                    className="h-9 w-9 text-foreground hover:text-foreground/80"
                     onClick={() => openAuthModal("login")}
                   >
                     <ShoppingBag className="h-5 w-5" />

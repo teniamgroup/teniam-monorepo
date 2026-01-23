@@ -163,7 +163,7 @@ export function AuthModal() {
                 </Button>
                 <DialogTitle className="text-2xl font-bold">Forgot password?</DialogTitle>
                 <DialogDescription>
-                    Enter your email address and we'll send you a link to reset your password.
+                    Enter your email address and we&apos;ll send you a link to reset your password.
                 </DialogDescription>
             </DialogHeader>
             <div className="p-6 pt-0">
@@ -213,12 +213,12 @@ export function AuthModal() {
                 </div>
                 <DialogTitle className="text-2xl font-bold text-center">Check your email</DialogTitle>
                 <DialogDescription className="text-center">
-                    We've sent a password reset link to <span className="font-medium text-foreground">{forgotEmail}</span>
+                    We&apos;ve sent a password reset link to <span className="font-medium text-foreground">{forgotEmail}</span>
                 </DialogDescription>
             </DialogHeader>
             <div className="p-6 pt-0 space-y-4">
                 <p className="text-sm text-muted-foreground text-center">
-                    Didn't receive the email? Check your spam folder or try again.
+                    Didn&apos;t receive the email? Check your spam folder or try again.
                 </p>
                 <div className="flex flex-col gap-2">
                     <Button variant="outline" className="w-full bg-transparent" onClick={() => setView("forgot")}>
@@ -574,7 +574,7 @@ export function AuthModal() {
 
     return (
         <Dialog open={showAuthModal} onOpenChange={(open) => !open && handleClose()}>
-            <DialogContent className="sm:max-w-[425px] p-0 gap-0 overflow-hidden bg-white text-black">
+            <DialogContent className="sm:max-w-[425px] p-0 gap-0 overflow-hidden">
                 {view === "auth" && renderAuthView()}
                 {view === "forgot" && renderForgotPassword()}
                 {view === "reset-sent" && renderResetSent()}
