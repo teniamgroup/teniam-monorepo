@@ -157,12 +157,12 @@ export function AuthModal() {
     const renderForgotPassword = () => (
         <>
             <DialogHeader className="p-6 pb-4">
-                <Button variant="ghost" size="sm" className="w-fit -ml-2 mb-2" onClick={() => setView("auth")}>
+                <Button variant="ghost" size="sm" className="w-fit -ml-2 mb-2 text-foreground" onClick={() => setView("auth")}>
                     <ArrowLeft className="h-4 w-4 mr-2" />
                     Back to sign in
                 </Button>
-                <DialogTitle className="text-2xl font-bold">Forgot password?</DialogTitle>
-                <DialogDescription>
+                <DialogTitle className="text-2xl font-bold text-foreground">Forgot password?</DialogTitle>
+                <DialogDescription className="text-foreground/70">
                     Enter your email address and we&apos;ll send you a link to reset your password.
                 </DialogDescription>
             </DialogHeader>
@@ -170,14 +170,14 @@ export function AuthModal() {
                 {error && <div className="mb-4 p-3 rounded-lg bg-destructive/10 text-destructive text-sm">{error}</div>}
                 <form onSubmit={handleForgotPassword} className="space-y-4">
                     <div className="space-y-2">
-                        <Label htmlFor="forgot-email">Email</Label>
+                        <Label htmlFor="forgot-email" className="text-foreground">Email</Label>
                         <div className="relative">
-                            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/50" />
                             <Input
                                 id="forgot-email"
                                 type="email"
                                 placeholder="you@example.com"
-                                className="pl-10"
+                                className="pl-10 text-foreground placeholder:text-foreground/50"
                                 value={forgotEmail}
                                 onChange={(e) => setForgotEmail(e.target.value)}
                                 required
@@ -211,17 +211,17 @@ export function AuthModal() {
                         <CheckCircle2 className="h-8 w-8 text-green-600" />
                     </div>
                 </div>
-                <DialogTitle className="text-2xl font-bold text-center">Check your email</DialogTitle>
-                <DialogDescription className="text-center">
+                <DialogTitle className="text-2xl font-bold text-center text-foreground">Check your email</DialogTitle>
+                <DialogDescription className="text-center text-foreground/70">
                     We&apos;ve sent a password reset link to <span className="font-medium text-foreground">{forgotEmail}</span>
                 </DialogDescription>
             </DialogHeader>
             <div className="p-6 pt-0 space-y-4">
-                <p className="text-sm text-muted-foreground text-center">
+                <p className="text-sm text-foreground/60 text-center">
                     Didn&apos;t receive the email? Check your spam folder or try again.
                 </p>
                 <div className="flex flex-col gap-2">
-                    <Button variant="outline" className="w-full bg-transparent" onClick={() => setView("forgot")}>
+                    <Button variant="outline" className="w-full bg-background text-foreground border-border hover:bg-muted" onClick={() => setView("forgot")}>
                         Try again
                     </Button>
                     <Button
@@ -241,21 +241,21 @@ export function AuthModal() {
     const renderResetPassword = () => (
         <>
             <DialogHeader className="p-6 pb-4">
-                <DialogTitle className="text-2xl font-bold">Reset your password</DialogTitle>
-                <DialogDescription>Enter your new password below.</DialogDescription>
+                <DialogTitle className="text-2xl font-bold text-foreground">Reset your password</DialogTitle>
+                <DialogDescription className="text-foreground/70">Enter your new password below.</DialogDescription>
             </DialogHeader>
             <div className="p-6 pt-0">
                 {error && <div className="mb-4 p-3 rounded-lg bg-destructive/10 text-destructive text-sm">{error}</div>}
                 <form onSubmit={handleResetPassword} className="space-y-4">
                     <div className="space-y-2">
-                        <Label htmlFor="new-password">New Password</Label>
+                        <Label htmlFor="new-password" className="text-foreground">New Password</Label>
                         <div className="relative">
-                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/50" />
                             <Input
                                 id="new-password"
                                 type={showPassword ? "text" : "password"}
                                 placeholder="••••••••"
-                                className="pl-10 pr-10"
+                                className="pl-10 pr-10 text-foreground placeholder:text-foreground/50"
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 required
@@ -268,23 +268,23 @@ export function AuthModal() {
                                 onClick={() => setShowPassword(!showPassword)}
                             >
                                 {showPassword ? (
-                                    <EyeOff className="h-4 w-4 text-muted-foreground" />
+                                    <EyeOff className="h-4 w-4 text-foreground/50" />
                                 ) : (
-                                    <Eye className="h-4 w-4 text-muted-foreground" />
+                                    <Eye className="h-4 w-4 text-foreground/50" />
                                 )}
                             </Button>
                         </div>
-                        <p className="text-xs text-muted-foreground">Must be at least 8 characters</p>
+                        <p className="text-xs text-foreground/60">Must be at least 8 characters</p>
                     </div>
                     <div className="space-y-2">
-                        <Label htmlFor="confirm-new-password">Confirm New Password</Label>
+                        <Label htmlFor="confirm-new-password" className="text-foreground">Confirm New Password</Label>
                         <div className="relative">
-                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                            <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/50" />
                             <Input
                                 id="confirm-new-password"
                                 type={showPassword ? "text" : "password"}
                                 placeholder="••••••••"
-                                className="pl-10"
+                                className="pl-10 text-foreground placeholder:text-foreground/50"
                                 value={confirmNewPassword}
                                 onChange={(e) => setConfirmNewPassword(e.target.value)}
                                 required
@@ -313,10 +313,10 @@ export function AuthModal() {
     const renderAuthView = () => (
         <>
             <DialogHeader className="p-6 pb-4">
-                <DialogTitle className="text-2xl font-bold">
+                <DialogTitle className="text-2xl font-bold text-foreground">
                     {activeTab === "login" ? "Welcome back" : "Create an account"}
                 </DialogTitle>
-                <DialogDescription>
+                <DialogDescription className="text-foreground/70">
                     {activeTab === "login"
                         ? "Sign in to access your cart, wishlist, and messages."
                         : "Join our marketplace to start buying and selling."}
@@ -326,15 +326,17 @@ export function AuthModal() {
             {/* Tab Selector */}
             <div className="flex px-6 gap-2">
                 <Button
-                    variant={activeTab === "login" ? "default" : "outline"}
-                    className={`flex-1 rounded-lg ${activeTab === "login" ? "bg-foreground text-background" : ""}`}
+                    className={`flex-1 rounded-lg ${activeTab === "login"
+                        ? "bg-foreground text-background hover:bg-foreground/90"
+                        : "bg-background text-foreground border border-border hover:bg-muted"}`}
                     onClick={() => setActiveTab("login")}
                 >
                     Sign In
                 </Button>
                 <Button
-                    variant={activeTab === "register" ? "default" : "outline"}
-                    className={`flex-1 rounded-lg ${activeTab === "register" ? "bg-foreground text-background" : ""}`}
+                    className={`flex-1 rounded-lg ${activeTab === "register"
+                        ? "bg-foreground text-background hover:bg-foreground/90"
+                        : "bg-background text-foreground border border-border hover:bg-muted"}`}
                     onClick={() => setActiveTab("register")}
                 >
                     Register
@@ -346,7 +348,7 @@ export function AuthModal() {
                 <div className="grid grid-cols-2 gap-3">
                     <Button
                         variant="outline"
-                        className="h-11 bg-transparent"
+                        className="h-11 bg-background text-foreground border-border hover:bg-muted"
                         onClick={() => handleSocialLogin("google")}
                         disabled={isLoading}
                     >
@@ -372,7 +374,7 @@ export function AuthModal() {
                     </Button>
                     <Button
                         variant="outline"
-                        className="h-11 bg-transparent"
+                        className="h-11 bg-background text-foreground border-border hover:bg-muted"
                         onClick={() => handleSocialLogin("apple")}
                         disabled={isLoading}
                     >
@@ -385,7 +387,7 @@ export function AuthModal() {
 
                 <div className="relative my-6">
                     <Separator />
-                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-2 text-xs text-muted-foreground">
+                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-2 text-xs text-foreground/60">
                         or continue with email
                     </span>
                 </div>
@@ -395,14 +397,14 @@ export function AuthModal() {
                 {activeTab === "login" ? (
                     <form onSubmit={handleLogin} className="space-y-4">
                         <div className="space-y-2">
-                            <Label htmlFor="login-email">Email</Label>
+                            <Label htmlFor="login-email" className="text-foreground">Email</Label>
                             <div className="relative">
-                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/50" />
                                 <Input
                                     id="login-email"
                                     type="email"
                                     placeholder="you@example.com"
-                                    className="pl-10"
+                                    className="pl-10 text-foreground placeholder:text-foreground/50"
                                     value={loginEmail}
                                     onChange={(e) => setLoginEmail(e.target.value)}
                                     required
@@ -411,11 +413,11 @@ export function AuthModal() {
                         </div>
                         <div className="space-y-2">
                             <div className="flex items-center justify-between">
-                                <Label htmlFor="login-password">Password</Label>
+                                <Label htmlFor="login-password" className="text-foreground">Password</Label>
                                 <Button
                                     type="button"
                                     variant="link"
-                                    className="px-0 h-auto text-xs text-muted-foreground"
+                                    className="px-0 h-auto text-xs text-foreground/60 hover:text-foreground"
                                     onClick={() => {
                                         setError("")
                                         setForgotEmail(loginEmail)
@@ -426,12 +428,12 @@ export function AuthModal() {
                                 </Button>
                             </div>
                             <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/50" />
                                 <Input
                                     id="login-password"
                                     type={showPassword ? "text" : "password"}
                                     placeholder="••••••••"
-                                    className="pl-10 pr-10"
+                                    className="pl-10 pr-10 text-foreground placeholder:text-foreground/50"
                                     value={loginPassword}
                                     onChange={(e) => setLoginPassword(e.target.value)}
                                     required
@@ -444,9 +446,9 @@ export function AuthModal() {
                                     onClick={() => setShowPassword(!showPassword)}
                                 >
                                     {showPassword ? (
-                                        <EyeOff className="h-4 w-4 text-muted-foreground" />
+                                        <EyeOff className="h-4 w-4 text-foreground/50" />
                                     ) : (
-                                        <Eye className="h-4 w-4 text-muted-foreground" />
+                                        <Eye className="h-4 w-4 text-foreground/50" />
                                     )}
                                 </Button>
                             </div>
@@ -469,14 +471,14 @@ export function AuthModal() {
                 ) : (
                     <form onSubmit={handleRegister} className="space-y-4">
                         <div className="space-y-2">
-                            <Label htmlFor="register-name">Full Name</Label>
+                            <Label htmlFor="register-name" className="text-foreground">Full Name</Label>
                             <div className="relative">
-                                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/50" />
                                 <Input
                                     id="register-name"
                                     type="text"
                                     placeholder="John Doe"
-                                    className="pl-10"
+                                    className="pl-10 text-foreground placeholder:text-foreground/50"
                                     value={registerName}
                                     onChange={(e) => setRegisterName(e.target.value)}
                                     required
@@ -484,14 +486,14 @@ export function AuthModal() {
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="register-email">Email</Label>
+                            <Label htmlFor="register-email" className="text-foreground">Email</Label>
                             <div className="relative">
-                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/50" />
                                 <Input
                                     id="register-email"
                                     type="email"
                                     placeholder="you@example.com"
-                                    className="pl-10"
+                                    className="pl-10 text-foreground placeholder:text-foreground/50"
                                     value={registerEmail}
                                     onChange={(e) => setRegisterEmail(e.target.value)}
                                     required
@@ -499,14 +501,14 @@ export function AuthModal() {
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="register-password">Password</Label>
+                            <Label htmlFor="register-password" className="text-foreground">Password</Label>
                             <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/50" />
                                 <Input
                                     id="register-password"
                                     type={showPassword ? "text" : "password"}
                                     placeholder="••••••••"
-                                    className="pl-10 pr-10"
+                                    className="pl-10 pr-10 text-foreground placeholder:text-foreground/50"
                                     value={registerPassword}
                                     onChange={(e) => setRegisterPassword(e.target.value)}
                                     required
@@ -519,23 +521,23 @@ export function AuthModal() {
                                     onClick={() => setShowPassword(!showPassword)}
                                 >
                                     {showPassword ? (
-                                        <EyeOff className="h-4 w-4 text-muted-foreground" />
+                                        <EyeOff className="h-4 w-4 text-foreground/50" />
                                     ) : (
-                                        <Eye className="h-4 w-4 text-muted-foreground" />
+                                        <Eye className="h-4 w-4 text-foreground/50" />
                                     )}
                                 </Button>
                             </div>
-                            <p className="text-xs text-muted-foreground">Must be at least 8 characters</p>
+                            <p className="text-xs text-foreground/60">Must be at least 8 characters</p>
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="register-confirm-password">Confirm Password</Label>
+                            <Label htmlFor="register-confirm-password" className="text-foreground">Confirm Password</Label>
                             <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-foreground/50" />
                                 <Input
                                     id="register-confirm-password"
                                     type={showPassword ? "text" : "password"}
                                     placeholder="••••••••"
-                                    className="pl-10"
+                                    className="pl-10 text-foreground placeholder:text-foreground/50"
                                     value={registerConfirmPassword}
                                     onChange={(e) => setRegisterConfirmPassword(e.target.value)}
                                     required
@@ -556,13 +558,13 @@ export function AuthModal() {
                                 "Create Account"
                             )}
                         </Button>
-                        <p className="text-xs text-center text-muted-foreground">
+                        <p className="text-xs text-center text-foreground/60">
                             By creating an account, you agree to our{" "}
-                            <a href="#" className="underline hover:text-foreground">
+                            <a href="#" className="underline text-foreground/80 hover:text-foreground">
                                 Terms of Service
                             </a>{" "}
                             and{" "}
-                            <a href="#" className="underline hover:text-foreground">
+                            <a href="#" className="underline text-foreground/80 hover:text-foreground">
                                 Privacy Policy
                             </a>
                         </p>
@@ -574,7 +576,7 @@ export function AuthModal() {
 
     return (
         <Dialog open={showAuthModal} onOpenChange={(open) => !open && handleClose()}>
-            <DialogContent className="sm:max-w-[425px] p-0 gap-0 overflow-hidden">
+            <DialogContent className="sm:max-w-[425px] p-0 gap-0 overflow-hidden bg-background text-foreground">
                 {view === "auth" && renderAuthView()}
                 {view === "forgot" && renderForgotPassword()}
                 {view === "reset-sent" && renderResetSent()}
