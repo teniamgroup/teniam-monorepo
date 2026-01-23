@@ -1,4 +1,5 @@
 import { listProducts } from "@/lib/data/products"
+import { getCategoryByHandle } from "@/lib/data/categories"
 import { HomeProductListing } from "@/components/home-product-listing"
 
 export default async function Page({
@@ -6,22 +7,36 @@ export default async function Page({
     searchParams,
 }: {
     params: Promise<{ locale: string }>
-    searchParams: Promise<{ category?: string; subcategory?: string }>
+    searchParams: Promise<{ category?: string }>
 }) {
     const { locale } = await params
-    const { category, subcategory } = await searchParams
+    const { category: categoryHandle } = await searchParams
 
+    // If category is specified, look up the category and filter products
+    let categoryId: string | undefined
+    let categoryName: string | null = null
+
+    if (categoryHandle) {
+        const category = await getCategoryByHandle(categoryHandle)
+        if (category) {
+            categoryId = category.id
+            categoryName = category.name
+        }
+    }
+
+    // Fetch products, optionally filtered by category
     const { response } = await listProducts({
         countryCode: locale,
-        queryParams: { limit: 50 }
+        queryParams: { limit: 50 },
+        category_id: categoryId,
     })
 
     return (
         <HomeProductListing
             initialProducts={response.products}
             locale={locale}
-            selectedCategory={category || null}
-            selectedSubcategory={subcategory || null}
+            selectedCategory={categoryName}
+            categoryHandle={categoryHandle || null}
         />
     )
 }

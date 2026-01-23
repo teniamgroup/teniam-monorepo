@@ -76,12 +76,12 @@ export function AppSidebar({ categories = [], locale = 'en', regions = [], ...pr
   const navMain = React.useMemo(() => {
     return categories.map((category) => ({
       title: category.name,
-      url: `/${locale}/products?category=${category.handle}`,
+      url: `/${locale}/home?category=${category.handle}`,
       icon: getCategoryIcon(category.name),
       isActive: false,
       items: (category.category_children || []).map((child: any) => ({
         title: child.name,
-        url: `/${locale}/products?category=${child.handle}`,
+        url: `/${locale}/home?category=${child.handle}`,
       })),
     }))
   }, [categories, locale])

@@ -14,14 +14,14 @@ interface HomeProductListingProps {
     initialProducts: Product[]
     locale: string
     selectedCategory?: string | null
-    selectedSubcategory?: string | null
+    categoryHandle?: string | null
 }
 
 export function HomeProductListing({
     initialProducts,
     locale,
     selectedCategory = null,
-    selectedSubcategory = null,
+    categoryHandle = null,
 }: HomeProductListingProps) {
     const [conditionFilter, setConditionFilter] = useState<"all" | "new" | "used">("all")
     const [priceFilter, setPriceFilter] = useState<{ min: number | null; max: number | null }>({
@@ -115,7 +115,6 @@ export function HomeProductListing({
         sellerTypeFilter.length
 
     const getDisplayTitle = () => {
-        if (selectedSubcategory) return selectedSubcategory
         if (selectedCategory) return selectedCategory
         return "All Products"
     }
@@ -147,7 +146,7 @@ export function HomeProductListing({
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <h2 className="text-2xl font-bold tracking-tight text-foreground">{getDisplayTitle()}</h2>
-                        {(selectedCategory || selectedSubcategory) && (
+                        {categoryHandle && (
                             <Button
                                 variant="ghost"
                                 size="sm"
