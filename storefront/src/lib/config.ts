@@ -1,7 +1,9 @@
 import Medusa from "@medusajs/js-sdk"
 
 // Use the deployed backend URL from environment variables
-const MEDUSA_BACKEND_URL = process.env.MEDUSA_BACKEND_URL
+// For local development, use localhost:9000
+// For production, use the deployed backend URL
+const MEDUSA_BACKEND_URL = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"
 
 export const sdk = new Medusa({
   baseUrl: MEDUSA_BACKEND_URL,
