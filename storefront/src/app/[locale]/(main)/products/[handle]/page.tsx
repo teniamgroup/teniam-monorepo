@@ -48,6 +48,8 @@ import {
   Mail,
   Link2,
 } from "lucide-react"
+import { useCartContext } from "@/components/providers"
+import { toast } from "sonner"
 
 import { listProducts } from "@/lib/data/products"
 import { listCategories } from "@/lib/data/categories"
@@ -67,6 +69,7 @@ export default function ProductPage() {
   const [isWishlisted, setIsWishlisted] = useState(false)
   const [detailsOpen, setDetailsOpen] = useState(true)
   const [shippingOpen, setShippingOpen] = useState(false)
+  const [isAddingToCart, setIsAddingToCart] = useState(false)
 
   const [showAllReviews, setShowAllReviews] = useState(false)
   const [helpfulReviews, setHelpfulReviews] = useState<Set<number>>(new Set())
@@ -83,6 +86,9 @@ export default function ProductPage() {
   const [regions, setRegions] = useState<any[]>([])
 
   const reviewsRef = useRef<HTMLDivElement>(null)
+
+  // Cart context
+  const { addToCart } = useCartContext()
 
   // Fetch product data
   const [product, setProduct] = useState<any>(null)
@@ -288,6 +294,29 @@ export default function ProductPage() {
     free: true,
     estimatedDays: "3-5 business days",
     returns: "30-day returns accepted",
+  }
+
+  // Add to cart handler
+  const handleAddToCart = async () => {
+    if (!product?.variants?.[0]?.id) {
+      toast.error("Product variant not available")
+      return
+    }
+
+    try {
+      setIsAddingToCart(true)
+      await addToCart({
+        variantId: product.variants[0].id,
+        quantity,
+        countryCode: locale
+      })
+      toast.success("Item added to cart!")
+    } catch (error) {
+      console.error("Failed to add item to cart:", error)
+      toast.error("Failed to add item to cart. Please try again.")
+    } finally {
+      setIsAddingToCart(false)
+    }
   }
 
   return (
@@ -567,8 +596,20 @@ export default function ProductPage() {
 
             {/* Add to Cart */}
             <div className="flex gap-3">
-              <Button size="lg" className="flex-1 rounded-xl text-base font-semibold bg-black text-white hover:bg-gray-800">
-                Add to Cart
+              <Button
+                size="lg"
+                className="flex-1 rounded-xl text-base font-semibold bg-black text-white hover:bg-gray-800"
+                onClick={handleAddToCart}
+                disabled={isAddingToCart}
+              >
+                {isAddingToCart ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    Adding to Cart...
+                  </div>
+                ) : (
+                  "Add to Cart"
+                )}
               </Button>
               <Button size="lg" variant="outline" className="rounded-xl text-base font-semibold bg-white text-black border-gray-300 hover:bg-gray-50">
                 Buy Now

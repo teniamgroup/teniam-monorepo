@@ -74,11 +74,10 @@ export const UpdateCartItemButton = ({
         -
       </Button>
       <span
-        className={`font-medium transition-all duration-300 ${
-          isDecreaseDisabled || isIncreaseDisabled
-            ? 'scale-95 text-secondary opacity-70'
-            : 'scale-100 text-primary opacity-100'
-        }`}
+        className={`font-medium transition-all duration-300 ${isDecreaseDisabled || isIncreaseDisabled
+            ? 'scale-95 text-foreground opacity-50'
+            : 'scale-100 text-foreground opacity-100'
+          }`}
       >
         {pendingQuantity}
       </span>

@@ -19,10 +19,10 @@ export const CartSummary = ({
 }) => {
   return (
     <div>
-      <div className="space-y-4 label-md text-secondary mb-4">
+      <div className="space-y-4 label-md text-foreground mb-4">
         <div className="flex justify-between">
           <span>Items:</span>
-          <span className="text-primary">
+          <span className="font-medium">
             {convertToLocale({
               amount: item_total,
               currency_code,
@@ -31,7 +31,7 @@ export const CartSummary = ({
         </div>
         <div className="flex justify-between">
           <span>Delivery:</span>
-          <span className="text-primary">
+          <span className="font-medium">
             {convertToLocale({
               amount: shipping_total,
               currency_code,
@@ -40,7 +40,7 @@ export const CartSummary = ({
         </div>
         <div className="flex justify-between">
           <span>Tax:</span>
-          <span className="text-primary">
+          <span className="font-medium">
             {convertToLocale({
               amount: tax,
               currency_code,
@@ -49,7 +49,7 @@ export const CartSummary = ({
         </div>
         <div className="flex justify-between">
           <span>Discount:</span>
-          <span className="text-primary">
+          <span className="font-medium">
             {convertToLocale({
               amount: discount_total,
               currency_code,
@@ -57,8 +57,8 @@ export const CartSummary = ({
           </span>
         </div>
         <div className="flex justify-between border-t pt-4 items-center">
-          <span>Total:</span>
-          <span className="label-xl text-primary">
+          <span className="font-semibold">Total:</span>
+          <span className="label-xl font-bold">
             {convertToLocale({
               amount: total,
               currency_code,

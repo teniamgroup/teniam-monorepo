@@ -9,8 +9,8 @@ export const CartItemsFooter = ({
 }) => {
   return (
     <div className='border rounded-sm p-4 flex items-center justify-between label-md'>
-      <p className='text-secondary'>Delivery</p>
-      <p>
+      <p className='text-foreground font-medium'>Delivery</p>
+      <p className='font-medium'>
         {convertToLocale({
           amount: price / 1,
           currency_code,

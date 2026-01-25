@@ -60,7 +60,7 @@ export const CartItemsProducts = ({
                   href={`/products/${product.product_handle}`}
                 >
                   <div className="w-[100px] md:w-[200px] lg:w-[280px] mb-4 lg:mb-0">
-                    <h3 className="heading-xs uppercase truncate">
+                    <h3 className="heading-xs uppercase truncate text-foreground font-bold">
                       {product.product_title}
                       {product.subtitle && ` - ${product.subtitle}`}
                     </h3>
@@ -73,11 +73,11 @@ export const CartItemsProducts = ({
                 )}
               </div>
               <div className="lg:flex justify-between -mt-4 lg:mt-0">
-                <div className="label-md text-secondary">
+                <div className="label-md text-foreground">
                   {options?.map(({ option, id, value }) => (
                     <p key={id}>
                       {option?.title}:{" "}
-                      <span className="text-primary">{value}</span>
+                      <span className="font-medium">{value}</span>
                     </p>
                   ))}
                   {change_quantity ? (
@@ -88,7 +88,7 @@ export const CartItemsProducts = ({
                   ) : (
                     <p>
                       Quantity:{" "}
-                      <span className="text-primary">{product.quantity}</span>
+                      <span className="font-medium">{product.quantity}</span>
                     </p>
                   )}
                 </div>

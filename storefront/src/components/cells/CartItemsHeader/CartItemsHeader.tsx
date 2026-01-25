@@ -15,11 +15,11 @@ export const CartItemsHeader = ({
         <SellerAvatar photo={seller.photo} size={32} alt={seller.name} />
 
         <div className="lg:flex gap-2">
-          <p className="uppercase heading-xs">{seller.name}</p>
+          <p className="uppercase heading-xs text-foreground font-bold">{seller.name}</p>
           {seller.id !== "fleek" && (
             <div className="flex items-center gap-2">
               <Divider square />
-              <p className="label-md text-secondary">
+              <p className="label-md text-foreground">
                 Joined: {format(seller.created_at || "", "yyyy-MM-dd")}
               </p>
             </div>
