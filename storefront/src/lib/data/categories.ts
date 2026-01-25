@@ -9,6 +9,16 @@ interface CategoriesProps {
 export const listCategories = async ({ query }: Partial<CategoriesProps> = {}) => {
   const limit = query?.limit || 100;
 
+  // Debug logging for the API call
+  console.log("[CATEGORIES] Fetching categories with URL:", '/store/product-categories')
+  console.log("[CATEGORIES] Query params:", {
+    fields: 'id,handle,name,rank,metadata,parent_category_id,description,*category_children',
+    include_descendants_tree: true,
+    include_ancestors_tree: true,
+    limit,
+    ...query
+  })
+
   const allCategories = await sdk.client
     .fetch<{
       product_categories: HttpTypes.StoreProductCategory[];

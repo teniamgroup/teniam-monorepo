@@ -12,6 +12,18 @@ export const sdk = new Medusa({
   publishableKey: process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY,
 })
 
+// Debug logging to help identify URL issues
+if (typeof window === "undefined") {
+  // Server-side logging
+  console.log("[SERVER] MEDUSA_BACKEND_URL:", MEDUSA_BACKEND_URL)
+  console.log("[SERVER] NEXT_PUBLIC_MEDUSA_BACKEND_URL:", process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL)
+  console.log("[SERVER] MEDUSA_BACKEND_URL from process.env:", process.env.MEDUSA_BACKEND_URL)
+} else {
+  // Client-side logging
+  console.log("[CLIENT] MEDUSA_BACKEND_URL:", MEDUSA_BACKEND_URL)
+  console.log("[CLIENT] NEXT_PUBLIC_MEDUSA_BACKEND_URL:", process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL)
+}
+
 type FetchQueryOptions = Omit<RequestInit, "headers" | "body"> & {
   headers?: Record<string, string | null | { tags: string[] }>
   query?: Record<string, string | number>
