@@ -3,7 +3,8 @@ import Medusa from "@medusajs/js-sdk"
 // Use the deployed backend URL from environment variables
 // For local development, use localhost:9000
 // For production, use the deployed backend URL
-const MEDUSA_BACKEND_URL = process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"
+// In Next.js, client-side environment variables need to be prefixed with NEXT_PUBLIC_
+const MEDUSA_BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || process.env.MEDUSA_BACKEND_URL || ""
 
 export const sdk = new Medusa({
   baseUrl: MEDUSA_BACKEND_URL,
