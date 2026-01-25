@@ -13,6 +13,7 @@ import {
   Headphones,
   Lightbulb,
   Usb,
+  Users,
 } from "lucide-react"
 import { HttpTypes } from "@medusajs/types"
 
@@ -28,6 +29,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { NavResources } from "./nav-resources"
 
 const data = {
   user: {
@@ -35,6 +37,13 @@ const data = {
     email: "m@example.com",
     avatar: "",
   },
+  navResources: [
+    {
+      title: "Community",
+      url: "/community",
+      icon: Users,
+    },
+  ],
   navSecondary: [
     {
       title: "Blogs",
@@ -109,6 +118,7 @@ export function AppSidebar({ categories = [], locale = 'en', regions = [], ...pr
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="flex-1 min-h-0 overflow-y-auto">
+        <NavResources items={data.navResources} />
         <NavMain items={navMain} />
         <NavSecondary items={data.navSecondary} regions={regions} className="mt-auto" />
       </SidebarContent>
