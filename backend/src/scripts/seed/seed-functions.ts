@@ -451,37 +451,33 @@ export async function createSellerStockLocation(
   }
 
   const fulfillmentSetName = `${sellerId} fulfillment set`
-  const { data: existingFulfillmentSets } = await query.graph({
-    entity: 'fulfillment_set',
-    fields: ['id', 'name'],
-    filters: {
-      name: fulfillmentSetName
-    }
-  })
 
-  if (!existingFulfillmentSets?.length) {
-    try {
-      await createLocationFulfillmentSetAndAssociateWithSellerWorkflow.run({
-        container,
-        input: {
-          fulfillment_set_data: {
-            name: fulfillmentSetName,
-            type: 'shipping'
-          },
-          location_id: stock.id,
-          seller_id: sellerId
-        }
-      })
-    } catch (error) {
-      const message =
-        error && typeof error === 'object' && 'message' in error
-          ? String((error as { message?: unknown }).message)
-          : String(error)
-      if (!message.includes('already exists')) {
-        throw error
+  // Create fulfillment set and associate with seller
+  try {
+    await createLocationFulfillmentSetAndAssociateWithSellerWorkflow.run({
+      container,
+      input: {
+        fulfillment_set_data: {
+          name: fulfillmentSetName,
+          type: 'shipping'
+        },
+        location_id: stock.id,
+        seller_id: sellerId
       }
+    })
+  } catch (error) {
+    const message =
+      error && typeof error === 'object' && 'message' in error
+        ? String((error as { message?: unknown }).message)
+        : String(error)
+    if (!message.includes('already exists')) {
+      throw error
     }
   }
+
+  // Wait a bit and then query for the stock location with fulfillment sets
+  // This ensures the fulfillment set is properly associated
+  await new Promise(resolve => setTimeout(resolve, 1000))
 
   let {
     data: [stockLocation]
@@ -493,28 +489,9 @@ export async function createSellerStockLocation(
     }
   })
 
+  // If still no fulfillment sets, try to refresh once more
   if (!stockLocation?.fulfillment_sets?.length) {
-    try {
-      await createLocationFulfillmentSetAndAssociateWithSellerWorkflow.run({
-        container,
-        input: {
-          fulfillment_set_data: {
-            name: fulfillmentSetName,
-            type: 'shipping'
-          },
-          location_id: stock.id,
-          seller_id: sellerId
-        }
-      })
-    } catch (error) {
-      const message =
-        error && typeof error === 'object' && 'message' in error
-          ? String((error as { message?: unknown }).message)
-          : String(error)
-      if (!message.includes('already exists')) {
-        throw error
-      }
-    }
+    await new Promise(resolve => setTimeout(resolve, 2000))
 
     const refresh = await query.graph({
       entity: 'stock_location',
@@ -525,6 +502,21 @@ export async function createSellerStockLocation(
     })
     stockLocation = refresh.data?.[0]
   }
+
+  // If still no fulfillment sets after all attempts, log a warning but continue
+  if (!stockLocation?.fulfillment_sets?.length) {
+    console.warn(`Warning: No fulfillment sets found for stock location ${stock.id} after all attempts`)
+  }
+
+  // Refresh the stock location data
+  const refresh = await query.graph({
+    entity: 'stock_location',
+    fields: ['*', 'fulfillment_sets.*'],
+    filters: {
+      id: stock.id
+    }
+  })
+  stockLocation = refresh.data?.[0]
 
   return stockLocation
 }
@@ -697,26 +689,26 @@ export async function createSellerProducts(
   const toInsert = productsToInsert
     .filter((product) => !existingHandles.has(product.handle))
     .map((p) => {
-    const categoryHandle = p?.metadata?.category_handle
-    const categoryId = categoryHandle
-      ? categoryByHandle.get(categoryHandle)
-      : undefined
+      const categoryHandle = p?.metadata?.category_handle
+      const categoryId = categoryHandle
+        ? categoryByHandle.get(categoryHandle)
+        : undefined
 
-    return {
-      ...p,
-      categories: [
-        {
-          id: categoryId ?? randomCategory().id
-        }
-      ],
-      collection_id: randomCollection().id,
-      sales_channels: [
-        {
-          id: salesChannelId
-        }
-      ]
-    }
-  })
+      return {
+        ...p,
+        categories: [
+          {
+            id: categoryId ?? randomCategory().id
+          }
+        ],
+        collection_id: randomCollection().id,
+        sales_channels: [
+          {
+            id: salesChannelId
+          }
+        ]
+      }
+    })
 
   if (!toInsert.length) {
     return existingProducts

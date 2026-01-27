@@ -31,6 +31,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { NavResources } from "./nav-resources"
+import Image from "next/image"
 
 const data = {
   user: {
@@ -106,12 +107,16 @@ export function AppSidebar({ categories = [], locale = 'en', regions = [], ...pr
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <a href="#">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Command className="size-4" />
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg text-sidebar-primary-foreground">
+                  <Image
+                    src="/logo.png"
+                    alt="Teniam"
+                    height={40}
+                    width={40}
+                    className="size-8 object-cover" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Mercur Marketplace</span>
-                  <span className="truncate text-xs">Premium Products</span>
+                  <span className="truncate font-semibold">Teniam</span>
                 </div>
               </a>
             </SidebarMenuButton>
@@ -123,7 +128,7 @@ export function AppSidebar({ categories = [], locale = 'en', regions = [], ...pr
         <NavMain items={navMain} />
         <NavSecondary items={data.navSecondary} regions={regions} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter className="flex-shrink-0 border-t border-sidebar-border">
+      <SidebarFooter className="flex-shrink-0 border-t">
         <div className="flex flex-col gap-2">
           <ThemeToggle />
           <NavUser user={data.user} />

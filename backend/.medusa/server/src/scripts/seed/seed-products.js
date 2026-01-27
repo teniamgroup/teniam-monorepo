@@ -4,581 +4,843 @@ exports.productsToInsert = void 0;
 const utils_1 = require("@medusajs/framework/utils");
 exports.productsToInsert = [
     {
-        title: 'AIR FORCE 1 LUXE UNISEX Sneakers',
-        handle: 'air-force-1-luxe-unisex-sneakers',
-        subtitle: ' foam midsole with Air-Sole unit',
-        description: 'The iconic Air Force 1 with premium materials and enhanced comfort. Features a full-grain leather upper',
+        title: "Zenith Motorized Standing Desk",
+        handle: "zenith-motorized-standing-desk",
+        subtitle: "Elevate your productivity, literally.",
+        description: "The Zenith Standing Desk features a dual motor system for smooth, quiet height adjustments. With a solid oak top and reinforced steel frame, it provides a wobble free experience whether you are sitting or standing.",
+        thumbnail: "https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=800&q=80",
         is_giftcard: false,
         status: utils_1.ProductStatus.PUBLISHED,
-        thumbnail: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/AIR-FORCE-1-LUXE-UNISEX-1 -01JRYW1QY88H8T98HNPZF7NJTF.png',
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1200&q=80" },
+            { url: "https://images.unsplash.com/photo-1616533382363-b4bca072473c?auto=format&fit=crop&w=1200&q=80" }
+        ],
         options: [
-            {
-                title: 'Color',
-                values: ['White']
-            }
+            { title: "Color", values: ["Oak", "Walnut"] },
+            { title: "Size", values: ["120cm", "140cm"] }
         ],
         variants: [
             {
-                title: 'White',
+                title: "Oak / 120cm",
                 allow_backorder: false,
                 manage_inventory: true,
-                prices: [
-                    {
-                        amount: 99,
-                        currency_code: 'eur'
-                    }
-                ],
-                options: {
-                    Color: 'White'
-                }
-            }
-        ],
-        discountable: true,
-        images: [
-            {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/AIR-FORCE-1-LUXE-UNISEX-1 -01JRYW1QY88H8T98HNPZF7NJTF.png'
+                options: { Color: "Oak", Size: "120cm" },
+                prices: [{ currency_code: "eur", amount: 49900 }]
             },
             {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/AIR-FORCE-1-LUXE-UNISEX-2 -01JRYW1QY96TV72HCK602R8ASK.png'
+                title: "Oak / 140cm",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Oak", Size: "140cm" },
+                prices: [{ currency_code: "eur", amount: 54900 }]
+            },
+            {
+                title: "Walnut / 120cm",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Walnut", Size: "120cm" },
+                prices: [{ currency_code: "eur", amount: 52900 }]
+            },
+            {
+                title: "Walnut / 140cm",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Walnut", Size: "140cm" },
+                prices: [{ currency_code: "eur", amount: 57900 }]
             }
-        ]
+        ],
+        collection_id: "COLLECTION_ID_HOME_OFFICE_ESSENTIALS",
+        categories: [{ id: "CATEGORY_ID_STANDING_DESKS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "standing-desks" }
     },
     {
-        title: 'New Runner Flag Sneakers',
-        handle: 'new-runner-flag',
-        subtitle: '',
-        description: 'Heritage-inspired running silhouette featuring distinctive flag details and national color accents. Combines lightweight cushioning, breathable materials, and nostalgic design elements for a unique statement piece with exceptional comfort.',
+        title: "Swift-Click Pro Wireless Mouse",
+        handle: "swift-click-pro-wireless-mouse",
+        subtitle: "Precision at your fingertips.",
+        description: "Engineered for professional gamers, the Swift-Click Pro offers a 26k DPI sensor and sub-1ms latency. Its ergonomic shell reduces wrist fatigue during long sessions.",
+        thumbnail: "https://images.unsplash.com/photo-1527698266440-12104e498b76?auto=format&fit=crop&w=800&q=80",
         is_giftcard: false,
         status: utils_1.ProductStatus.PUBLISHED,
-        thumbnail: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/New-Runner-Flag-1-01JRYW0TG1KQ5T688H810M9BE3.png',
         discountable: true,
-        variants: [
-            {
-                title: 'Brown / 41 / New',
-                allow_backorder: false,
-                manage_inventory: true,
-                options: { Color: 'Brown', Size: '41', Condition: 'New' },
-                variant_rank: 0,
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 59
-                    }
-                ]
-            },
-            {
-                title: 'Brown / 40 / New',
-                allow_backorder: false,
-                manage_inventory: true,
-                options: { Color: 'Brown', Size: '40', Condition: 'New' },
-                variant_rank: 1,
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 59
-                    }
-                ]
-            },
-            {
-                title: 'Brown / 39 / New',
-                allow_backorder: false,
-                manage_inventory: true,
-                variant_rank: 2,
-                options: { Color: 'Brown', Size: '39', Condition: 'New' },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 59
-                    }
-                ]
-            },
-            {
-                title: 'Brown / 38 / New',
-                allow_backorder: false,
-                manage_inventory: true,
-                variant_rank: 3,
-                options: { Color: 'Brown', Size: '38', Condition: 'New' },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 59
-                    }
-                ]
-            },
-            {
-                title: 'Brown / 41 / Used',
-                allow_backorder: false,
-                manage_inventory: true,
-                variant_rank: 4,
-                options: { Color: 'Brown', Size: '41', Condition: 'Used' },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 39
-                    }
-                ]
-            },
-            {
-                title: 'Brown / 40 / Used',
-                allow_backorder: false,
-                manage_inventory: true,
-                variant_rank: 5,
-                options: { Color: 'Brown', Size: '40', Condition: 'Used' },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 39
-                    }
-                ]
-            },
-            {
-                title: 'Brown / 39 / Used',
-                allow_backorder: false,
-                manage_inventory: true,
-                variant_rank: 5,
-                options: { Color: 'Brown', Size: '39', Condition: 'Used' },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 39
-                    }
-                ]
-            },
-            {
-                title: 'Brown / 38 / Used',
-                allow_backorder: false,
-                manage_inventory: true,
-                variant_rank: 5,
-                options: { Color: 'Brown', Size: '38', Condition: 'Used' },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 39
-                    }
-                ]
-            }
+        images: [
+            { url: "https://images.unsplash.com/photo-1527698266440-12104e498b76?auto=format&fit=crop&w=1200&q=80" }
         ],
         options: [
+            { title: "Color", values: ["Black", "White"] }
+        ],
+        variants: [
             {
-                title: 'Size',
-                values: ['38', '39', '40', '41']
+                title: "Black",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Black" },
+                prices: [{ currency_code: "eur", amount: 8900 }]
             },
             {
-                title: 'Color',
-                values: ['Brown']
-            },
-            {
-                title: 'Condition',
-                values: ['New', 'Used']
+                title: "White",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "White" },
+                prices: [{ currency_code: "eur", amount: 8900 }]
             }
         ],
-        images: [
-            {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/New-Runner-Flag-1-01JRYW0TG1KQ5T688H810M9BE3.png'
-            }
-        ]
+        collection_id: "COLLECTION_ID_GAMING_GEAR",
+        categories: [{ id: "CATEGORY_ID_MICE_TRACKPADS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "mice-trackpads" }
     },
     {
-        title: 'CLASSIC CUPSOLE Sneakers',
-        handle: 'classic-cupsole-sneakers',
-        subtitle: '',
-        description: 'Retro court style reimagined for today',
+        title: "Lunar Felt Desk Mat",
+        handle: "lunar-felt-desk-mat",
+        subtitle: "Warmth and texture for your workspace.",
+        description: "Made from premium synthetic felt with a non-slip cork base, this mat protects your desk while providing a soft surface for your hands and devices.",
+        thumbnail: "https://images.unsplash.com/photo-1616412184852-c0fb9903930b?auto=format&fit=crop&w=800&q=80",
         is_giftcard: false,
         status: utils_1.ProductStatus.PUBLISHED,
-        thumbnail: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/CLASSIC-CUPSOLE-1 -01JRYVZQBJ85B2MPZ3Q0KTBYGA.png',
         discountable: true,
-        variants: [
-            {
-                title: 'White / Used / 41',
-                allow_backorder: false,
-                manage_inventory: true,
-                variant_rank: 0,
-                options: {
-                    Color: 'White',
-                    Size: '41',
-                    Condition: 'Used'
-                },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 59
-                    }
-                ]
-            },
-            {
-                title: 'Black / Used / 41',
-                allow_backorder: false,
-                manage_inventory: true,
-                variant_rank: 1,
-                options: {
-                    Color: 'Black',
-                    Size: '41',
-                    Condition: 'Used'
-                },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 69
-                    }
-                ]
-            }
+        images: [
+            { url: "https://images.unsplash.com/photo-1616412184852-c0fb9903930b?auto=format&fit=crop&w=1200&q=80" }
         ],
         options: [
+            { title: "Size", values: ["Medium", "Large"] },
+            { title: "Color", values: ["Grey", "Anthracite"] }
+        ],
+        variants: [
             {
-                title: 'Size',
-                values: ['40', '41']
+                title: "Medium / Grey",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Size: "Medium", Color: "Grey" },
+                prices: [{ currency_code: "eur", amount: 3500 }]
             },
             {
-                title: 'Color',
-                values: ['White', 'Black']
+                title: "Medium / Anthracite",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Size: "Medium", Color: "Anthracite" },
+                prices: [{ currency_code: "eur", amount: 3500 }]
             },
             {
-                title: 'Condition',
-                values: ['New', 'Used']
+                title: "Large / Grey",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Size: "Large", Color: "Grey" },
+                prices: [{ currency_code: "eur", amount: 4500 }]
+            },
+            {
+                title: "Large / Anthracite",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Size: "Large", Color: "Anthracite" },
+                prices: [{ currency_code: "eur", amount: 4500 }]
             }
         ],
-        images: [
-            {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/CLASSIC-CUPSOLE-1 -01JRYVZQBJ85B2MPZ3Q0KTBYGA.png'
-            }
-        ]
+        collection_id: "COLLECTION_ID_HOME_OFFICE_ESSENTIALS",
+        categories: [{ id: "CATEGORY_ID_DESK_MATS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "desk-mats" }
     },
     {
-        title: 'STORM 96 2K LITE Sneakers',
-        handle: 'storm-96-2k-lite',
-        subtitle: '',
-        description: "Retro-futuristic design combining '90s athletic aesthetics with contemporary technology. Features sculpted, lightweight midsole, mixed material upper, and unique lacing system for stand-out street style with all-day wearability.",
+        title: "Aero-Flow Monitor Arm",
+        handle: "aero-flow-monitor-arm",
+        subtitle: "Free your desk space.",
+        description: "A gas-spring monitor arm that allows for effortless height, tilt, and swivel adjustments. Compatible with VESA mounts and screens up to 34 inches.",
+        thumbnail: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=800&q=80",
         is_giftcard: false,
         status: utils_1.ProductStatus.PUBLISHED,
-        thumbnail: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/STORM-96-2K-LITE-1-01JRYVZ58MYDM626NAX1E9ZDDQ.png',
         discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Condition", values: ["New", "Used"] }
+        ],
         variants: [
             {
-                title: 'Black / 42',
+                title: "New",
                 allow_backorder: false,
                 manage_inventory: true,
-                variant_rank: 0,
-                options: {
-                    Color: 'Black',
-                    Size: '42'
-                },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 79
-                    }
-                ]
+                options: { Condition: "New" },
+                prices: [{ currency_code: "eur", amount: 12000 }]
             },
             {
-                title: 'Black / 41',
+                title: "Used",
                 allow_backorder: false,
                 manage_inventory: true,
-                variant_rank: 1,
-                options: {
-                    Color: 'Black',
-                    Size: '41'
-                },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 79
-                    }
-                ]
+                options: { Condition: "Used" },
+                prices: [{ currency_code: "eur", amount: 8500 }]
             }
         ],
-        options: [
-            { title: 'Size', values: ['41', '42'] },
-            { title: 'Color', values: ['Black'] }
-        ],
-        images: [
-            {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/STORM-96-2K-LITE-1-01JRYVZ58MYDM626NAX1E9ZDDQ.png'
-            }
-        ]
+        collection_id: "COLLECTION_ID_CREATIVE_WORKSTATION",
+        categories: [{ id: "CATEGORY_ID_MONITOR_ARMS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "monitor-arms" }
     },
     {
-        title: 'U574 UNISEX Sneakers',
-        handle: 'u574-unisex-sneakers',
-        subtitle: '',
-        description: 'Featuring the classic 574 silhouette with updated materials and cushioning. Includes ENCAP midsole technology for support and maximum durability, plus a suede/mesh upper for breathability and style.',
+        title: "Studio-Clarity Open-Back Headphones",
+        handle: "studio-clarity-open-back-headphones",
+        subtitle: "Professional grade soundstage.",
+        description: "Experience music the way it was intended. These open-back headphones provide an expansive soundstage and neutral frequency response for mixing and critical listening.",
+        thumbnail: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
         is_giftcard: false,
         status: utils_1.ProductStatus.PUBLISHED,
-        thumbnail: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/U574-UNISEX-1-01JRYVYJVR8ZWQF87V8NS2HHX9.png',
         discountable: true,
-        variants: [
-            {
-                title: '37 / Orange / New',
-                allow_backorder: false,
-                manage_inventory: true,
-                variant_rank: 0,
-                options: {
-                    Color: 'Orange',
-                    Size: '37',
-                    Condition: 'New'
-                },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 87
-                    }
-                ]
-            }
+        images: [
+            { url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80" }
         ],
         options: [
-            { title: 'Color', values: ['Orange'] },
-            { title: 'Size', values: ['37'] },
-            { title: 'Condition', values: ['Used', 'New'] }
+            { title: "Color", values: ["Silver", "Black"] }
         ],
-        images: [
+        variants: [
             {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/U574-UNISEX-1-01JRYVYJVR8ZWQF87V8NS2HHX9.png'
+                title: "Silver",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Silver" },
+                prices: [{ currency_code: "eur", amount: 29900 }]
             },
             {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/U574-UNISEX-2-01JRYVYJVTX6NRM2CCEPR6T994.png'
-            }
-        ]
-    },
-    {
-        title: 'Air VaporMax 2023 Flyknit Triple Black Sneakers',
-        handle: 'air-vapormax-2023-flyknit-triple-black-sneakers',
-        subtitle: '',
-        description: 'Revolutionary cushioning with VaporMax Air technology and lightweight Flyknit construction. The unique sole eliminates excess weight, while the sleek triple black colorway offers versatile styling options.',
-        is_giftcard: false,
-        status: utils_1.ProductStatus.PUBLISHED,
-        thumbnail: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/Air-VaporMax-2023-Flyknit-Triple-Black-1 -01JRYVXVMV7D60YFGHGCY7FD1K.png',
-        discountable: true,
-        variants: [
-            {
-                title: 'Black / 41 / New',
+                title: "Black",
                 allow_backorder: false,
                 manage_inventory: true,
-                variant_rank: 0,
-                options: { Color: 'Black', Size: '41', Condition: 'New' },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 99
-                    }
-                ]
+                options: { Color: "Black" },
+                prices: [{ currency_code: "eur", amount: 29900 }]
             }
         ],
-        options: [
-            { title: 'Color', values: ['Black'] },
-            { title: 'Size', values: ['41'] },
-            { title: 'Condition', values: ['Used', 'New'] }
-        ],
+        collection_id: "COLLECTION_ID_AUDIO_VISUAL",
+        categories: [{ id: "CATEGORY_ID_HEADPHONES" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "headphones" }
+    },
+    {
+        title: "RTX 5080 Ultra GPU",
+        handle: "rtx-5080-ultra-gpu",
+        subtitle: "The ultimate gaming beast.",
+        description: "Push the limits of 4K gaming with the latest architectural breakthroughs. Features 16GB of GDDR7 memory and incredible ray-tracing performance.",
+        thumbnail: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: false,
         images: [
+            { url: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Condition", values: ["New"] }
+        ],
+        variants: [
             {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/Air-VaporMax-2023-Flyknit-Triple-Black-1 -01JRYVXVMV7D60YFGHGCY7FD1K.png'
+                title: "New",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Condition: "New" },
+                prices: [{ currency_code: "eur", amount: 119900 }]
+            }
+        ],
+        collection_id: "COLLECTION_ID_CUSTOM_BUILDS",
+        categories: [{ id: "CATEGORY_ID_GPUS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "gpus" }
+    },
+    {
+        title: "Mechanical Switch Sampler Pack",
+        handle: "mechanical-switch-sampler-pack",
+        subtitle: "Find your perfect click.",
+        description: "Can't decide on a switch? This sampler includes 12 different mechanical switches ranging from linear to clicky and tactile.",
+        thumbnail: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Set Size", values: ["12-Pack", "24-Pack"] }
+        ],
+        variants: [
+            {
+                title: "12-Pack",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { "Set Size": "12-Pack" },
+                prices: [{ currency_code: "eur", amount: 1900 }]
             },
             {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/Air-VaporMax-2023-Flyknit-Triple-Black-2 -01JRYVXVMZS1REFQNM6WKJWDPG.png'
-            }
-        ]
-    },
-    {
-        title: 'Reelwind Sneakers',
-        handle: 'reelwind-sneakers',
-        subtitle: '',
-        description: 'Performance-meets-lifestyle design with responsive cushioning and flexible support. Made with recycled materials, featuring a breathable upper and durable rubber outsole for all-day comfort.',
-        is_giftcard: false,
-        status: utils_1.ProductStatus.PUBLISHED,
-        thumbnail: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/Reelwind-1-01JRYVWVF8XVHG23RXMNAY2EFJ.png',
-        discountable: true,
-        variants: [
-            {
-                title: 'Red / 38',
+                title: "24-Pack",
                 allow_backorder: false,
                 manage_inventory: true,
-                variant_rank: 0,
-                options: { Color: 'Red', Size: '38' },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 59
-                    }
-                ]
+                options: { "Set Size": "24-Pack" },
+                prices: [{ currency_code: "eur", amount: 3500 }]
             }
         ],
+        collection_id: "COLLECTION_ID_CUSTOM_BUILDS",
+        categories: [{ id: "CATEGORY_ID_SWITCHES" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "switches" }
+    },
+    {
+        title: "Titan 4K Curved Monitor",
+        handle: "titan-4k-curved-monitor",
+        subtitle: "Immersive visuals for work and play.",
+        description: "A 34-inch ultra-wide curved display with 144Hz refresh rate and HDR1000. Perfect for cinematic gaming and large-scale creative workflows.",
+        thumbnail: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1200&q=80" }
+        ],
         options: [
+            { title: "Condition", values: ["New", "Used"] }
+        ],
+        variants: [
             {
-                title: 'Size',
-                values: ['38']
+                title: "New",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Condition: "New" },
+                prices: [{ currency_code: "eur", amount: 89900 }]
             },
             {
-                title: 'Color',
-                values: ['Red']
-            }
-        ],
-        images: [
-            {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/Reelwind-1-01JRYVWVF8XVHG23RXMNAY2EFJ.png'
-            }
-        ]
-    },
-    {
-        title: 'Cool Balance U9060EEE Sneakers',
-        handle: 'u9060eee',
-        subtitle: '',
-        description: 'Modern interpretation of the classic running silhouette with exaggerated proportions and enhanced cushioning. Features a combination of premium suede and mesh with an angular, sculptural midsole design for contemporary street style.',
-        is_giftcard: false,
-        status: utils_1.ProductStatus.PUBLISHED,
-        thumbnail: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/U9060EEE-1-01JRYVW83SET4B4ZYZVSK39FDF.png',
-        discountable: true,
-        variants: [
-            {
-                title: 'Gray / Used',
+                title: "Used",
                 allow_backorder: false,
                 manage_inventory: true,
-                variant_rank: 1,
-                options: {
-                    Color: 'Gray',
-                    Condition: 'Used'
-                },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 39
-                    }
-                ]
+                options: { Condition: "Used" },
+                prices: [{ currency_code: "eur", amount: 65000 }]
+            }
+        ],
+        collection_id: "COLLECTION_ID_GAMING_GEAR",
+        categories: [{ id: "CATEGORY_ID_MONITORS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "monitors" }
+    },
+    {
+        title: "Coiled Aviator USB-C Cable",
+        handle: "coiled-aviator-usb-c-cable",
+        subtitle: "The aesthetic choice for keyboards.",
+        description: "Durable paracord-wrapped cable with a high-quality aviator connector. Adds a professional look to any mechanical keyboard setup.",
+        thumbnail: "https://images.unsplash.com/photo-1619103300867-6260d60914ad?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1619103300867-6260d60914ad?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Color", values: ["Sky Blue", "Midnight", "Laser Pink"] }
+        ],
+        variants: [
+            {
+                title: "Sky Blue",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Sky Blue" },
+                prices: [{ currency_code: "eur", amount: 4500 }]
             },
             {
-                title: 'Gray / New',
+                title: "Midnight",
                 allow_backorder: false,
                 manage_inventory: true,
-                variant_rank: 0,
-                options: { Color: 'Gray', Condition: 'New' },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 79
-                    }
-                ]
-            }
-        ],
-        options: [
-            {
-                title: 'Condition',
-                values: ['New', 'Used']
+                options: { Color: "Midnight" },
+                prices: [{ currency_code: "eur", amount: 4500 }]
             },
             {
-                title: 'Color',
-                values: ['Gray']
-            }
-        ],
-        images: [
-            {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/U9060EEE-1-01JRYVW83SET4B4ZYZVSK39FDF.png'
-            }
-        ]
-    },
-    {
-        title: 'Brown Sneakers',
-        handle: 'brown-sneakers',
-        subtitle: 'Cosy',
-        description: 'Classic brown sneakers with leather and suede upper, and a durable rubber sole. Timeless and versatile.',
-        is_giftcard: false,
-        status: utils_1.ProductStatus.PUBLISHED,
-        thumbnail: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/u2735941527_Product_photography_of_brown_Adidas_samba_Sneaker_80c8f007-dcfa-4e5b-b8ac-bf88851a7376_0-01JRWZZ5V9M2ZC0K0WSC96E4AZ.png',
-        discountable: true,
-        variants: [
-            {
-                title: 'Brown / New',
+                title: "Laser Pink",
                 allow_backorder: false,
                 manage_inventory: true,
-                variant_rank: 0,
-                options: {
-                    Color: 'Brown',
-                    Condition: 'New'
-                },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 89
-                    }
-                ]
+                options: { Color: "Laser Pink" },
+                prices: [{ currency_code: "eur", amount: 4500 }]
             }
         ],
-        options: [
-            { title: 'Color', values: ['Brown'] },
-            { title: 'Condition', values: ['New'] }
-        ],
-        images: [
-            {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/u2735941527_Product_photography_of_brown_Adidas_samba_Sneaker_80c8f007-dcfa-4e5b-b8ac-bf88851a7376_0-01JRWZZ5V9M2ZC0K0WSC96E4AZ.png'
-            }
-        ]
+        collection_id: "COLLECTION_ID_ACCESSORIES",
+        categories: [{ id: "CATEGORY_ID_CABLES" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "cables" }
     },
     {
-        title: 'Green high-tops',
-        handle: 'green-high-tops',
-        subtitle: '',
-        description: 'Bold green high-tops with classic canvas upper and rubber sole. A timeless streetwear staple.',
+        title: "Minimalist Desktop Organizer",
+        handle: "minimalist-desktop-organizer",
+        subtitle: "A place for everything.",
+        description: "A modular organization tray for your pens, cards, and everyday carry. Features magnetic attachments and a high-quality aluminum finish.",
+        thumbnail: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?auto=format&fit=crop&w=800&q=80",
         is_giftcard: false,
         status: utils_1.ProductStatus.PUBLISHED,
-        thumbnail: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/u2735941527_Product_photography_of_green_converse_Sneakers_no_1ef027ea-f31f-4996-b419-63f85716a277_1-01JRWZYCWYAD4QVMRRTFVWHHDK.png',
         discountable: true,
-        variants: [
-            {
-                title: 'Green / 40 / New',
-                allow_backorder: false,
-                manage_inventory: true,
-                variant_rank: 0,
-                options: { Color: 'Green', Size: '40', Condition: 'New' },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 99
-                    }
-                ]
-            }
+        images: [
+            { url: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?auto=format&fit=crop&w=1200&q=80" }
         ],
         options: [
-            { title: 'Color', values: ['Green'] },
-            { title: 'Size', values: ['40'] },
-            { title: 'Condition', values: ['Used', 'New'] }
+            { title: "Color", values: ["Silver", "Space Grey"] }
         ],
-        images: [
+        variants: [
             {
-                url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/u2735941527_Product_photography_of_green_converse_Sneakers_no_1ef027ea-f31f-4996-b419-63f85716a277_1-01JRWZYCWYAD4QVMRRTFVWHHDK.png'
+                title: "Silver",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Silver" },
+                prices: [{ currency_code: "eur", amount: 5900 }]
+            },
+            {
+                title: "Space Grey",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Space Grey" },
+                prices: [{ currency_code: "eur", amount: 5900 }]
             }
-        ]
+        ],
+        collection_id: "COLLECTION_ID_HOME_OFFICE_ESSENTIALS",
+        categories: [{ id: "CATEGORY_ID_STORAGE_ORGANISERS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "storage-organisers" }
     },
     {
-        title: 'High Sneakers',
-        handle: 'high-sneakers',
-        subtitle: 'Purple, beige, and orange',
-        description: 'High Sneakers in a bold mix of purple, beige, and orange. Premium materials, iconic silhouette, and standout color blocking.',
+        title: "Pro-Stream XLR Microphone",
+        handle: "pro-stream-xlr-microphone",
+        subtitle: "Broadcast-quality voice.",
+        description: "Large-diaphragm condenser microphone designed for podcasters and streamers. Requires 48V phantom power via an audio interface.",
+        thumbnail: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80",
         is_giftcard: false,
         status: utils_1.ProductStatus.PUBLISHED,
-        thumbnail: 'https://i.imgur.com/zIcEOTS.png',
         discountable: true,
-        variants: [
-            {
-                title: 'High Sneakers',
-                allow_backorder: false,
-                manage_inventory: true,
-                variant_rank: 0,
-                options: { Color: 'Purple' },
-                prices: [
-                    {
-                        currency_code: 'eur',
-                        amount: 119
-                    }
-                ]
-            }
+        images: [
+            { url: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80" }
         ],
         options: [
+            { title: "Condition", values: ["New", "Used"] }
+        ],
+        variants: [
             {
-                title: 'Color',
-                values: ['Purple']
+                title: "New",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Condition: "New" },
+                prices: [{ currency_code: "eur", amount: 24900 }]
+            },
+            {
+                title: "Used",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Condition: "Used" },
+                prices: [{ currency_code: "eur", amount: 18000 }]
             }
         ],
+        collection_id: "COLLECTION_ID_AUDIO_VISUAL",
+        categories: [{ id: "CATEGORY_ID_MICROPHONES" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "microphones" }
+    },
+    {
+        title: "Hex-Grid RGB Wall Panels",
+        handle: "hex-grid-rgb-wall-panels",
+        subtitle: "Paint your walls with light.",
+        description: "Smart LED panels that sync with your computer or music. Easy to install with included adhesive strips. Expandable up to 30 panels.",
+        thumbnail: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
         images: [
+            { url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Pack Size", values: ["7-Pack", "15-Pack"] }
+        ],
+        variants: [
             {
-                url: 'https://i.imgur.com/zIcEOTS.png'
+                title: "7-Pack",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { "Pack Size": "7-Pack" },
+                prices: [{ currency_code: "eur", amount: 14900 }]
+            },
+            {
+                title: "15-Pack",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { "Pack Size": "15-Pack" },
+                prices: [{ currency_code: "eur", amount: 25900 }]
             }
-        ]
+        ],
+        collection_id: "COLLECTION_ID_LIGHTING_SOLUTIONS",
+        categories: [{ id: "CATEGORY_ID_RGB_LIGHTING" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "rgb-lighting" }
+    },
+    {
+        title: "Ergo-Comfort Desk Chair",
+        handle: "ergo-comfort-desk-chair",
+        subtitle: "Support for your spine.",
+        description: "Breathable mesh back with adjustable lumbar support and 4D armrests. Designed to support 8+ hours of daily use.",
+        thumbnail: "https://images.unsplash.com/photo-1505843490701-5be5d0b19d58?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1505843490701-5be5d0b19d58?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Color", values: ["Onyx Black", "Storm Grey"] }
+        ],
+        variants: [
+            {
+                title: "Onyx Black",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Onyx Black" },
+                prices: [{ currency_code: "eur", amount: 34900 }]
+            },
+            {
+                title: "Storm Grey",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Storm Grey" },
+                prices: [{ currency_code: "eur", amount: 34900 }]
+            }
+        ],
+        collection_id: "COLLECTION_ID_HOME_OFFICE_ESSENTIALS",
+        categories: [{ id: "CATEGORY_ID_DESK_ACCESSORIES" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "desk-accessories" }
+    },
+    {
+        title: "Velvet Gradient Keycap Set",
+        handle: "velvet-gradient-keycap-set",
+        subtitle: "Durable PBT, beautiful colors.",
+        description: "Thick PBT doubleshot keycaps featuring a sunset gradient. Compatible with most mechanical keyboards using MX-style switches.",
+        thumbnail: "https://images.unsplash.com/photo-1618384887929-16ec33faf9c1?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1618384887929-16ec33faf9c1?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Layout", values: ["ANSI", "ISO"] }
+        ],
+        variants: [
+            {
+                title: "ANSI",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Layout: "ANSI" },
+                prices: [{ currency_code: "eur", amount: 6500 }]
+            },
+            {
+                title: "ISO",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Layout: "ISO" },
+                prices: [{ currency_code: "eur", amount: 6500 }]
+            }
+        ],
+        collection_id: "COLLECTION_ID_CUSTOM_BUILDS",
+        categories: [{ id: "CATEGORY_ID_KEYCAPS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "keycaps" }
+    },
+    {
+        title: "Sonic-Pulse Desk Speakers",
+        handle: "sonic-pulse-desk-speakers",
+        subtitle: "Compact size, massive sound.",
+        description: "High-fidelity bookshelf speakers for your desk. Features Bluetooth 5.0 and optical inputs for versatile connectivity.",
+        thumbnail: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Condition", values: ["New", "Used"] }
+        ],
+        variants: [
+            {
+                title: "New",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Condition: "New" },
+                prices: [{ currency_code: "eur", amount: 19900 }]
+            },
+            {
+                title: "Used",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Condition: "Used" },
+                prices: [{ currency_code: "eur", amount: 14000 }]
+            }
+        ],
+        collection_id: "COLLECTION_ID_AUDIO_VISUAL",
+        categories: [{ id: "CATEGORY_ID_DESK_SPEAKERS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "desk-speakers" }
+    },
+    {
+        title: "Thunderbolt 4 Docking Station",
+        handle: "thunderbolt-4-docking-station",
+        subtitle: "The ultimate single-cable solution.",
+        description: "Connect your laptop to dual 4K monitors, peripherals, and high-speed storage with a single Thunderbolt 4 cable. Features 90W power delivery.",
+        thumbnail: "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Power Output", values: ["90W", "120W"] }
+        ],
+        variants: [
+            {
+                title: "90W",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { "Power Output": "90W" },
+                prices: [{ currency_code: "eur", amount: 22900 }]
+            },
+            {
+                title: "120W",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { "Power Output": "120W" },
+                prices: [{ currency_code: "eur", amount: 27900 }]
+            }
+        ],
+        collection_id: "COLLECTION_ID_ACCESSORIES",
+        categories: [{ id: "CATEGORY_ID_USB_HUBS_DOCKS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "usb-hubs-docks" }
+    },
+    {
+        title: "4K Ultra-Crisp Webcam",
+        handle: "4k-ultra-crisp-webcam",
+        subtitle: "Crystal clear video for every meeting.",
+        description: "High-definition 4K webcam with auto-focus and low-light correction. Built-in privacy shutter ensures your security.",
+        thumbnail: "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Color", values: ["Black", "White"] }
+        ],
+        variants: [
+            {
+                title: "Black",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Black" },
+                prices: [{ currency_code: "eur", amount: 12900 }]
+            },
+            {
+                title: "White",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "White" },
+                prices: [{ currency_code: "eur", amount: 12900 }]
+            }
+        ],
+        collection_id: "COLLECTION_ID_AUDIO_VISUAL",
+        categories: [{ id: "CATEGORY_ID_WEBCAMS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "webcams" }
+    },
+    {
+        title: "65W GaN Travel Charger",
+        handle: "65w-gan-travel-charger",
+        subtitle: "Small size, big power.",
+        description: "A compact Gallium Nitride (GaN) charger with two USB-C ports and one USB-A port. Charges your laptop and phone simultaneously.",
+        thumbnail: "https://images.unsplash.com/photo-1610492314415-d4452188448b?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1610492314415-d4452188448b?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Color", values: ["White", "Black"] }
+        ],
+        variants: [
+            {
+                title: "White",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "White" },
+                prices: [{ currency_code: "eur", amount: 4900 }]
+            },
+            {
+                title: "Black",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Black" },
+                prices: [{ currency_code: "eur", amount: 4900 }]
+            }
+        ],
+        collection_id: "COLLECTION_ID_ACCESSORIES",
+        categories: [{ id: "CATEGORY_ID_POWER_CHARGERS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "power-chargers" }
+    },
+    {
+        title: "Bamboo Monitor Stand",
+        handle: "bamboo-monitor-stand",
+        subtitle: "Eco-friendly ergonomics.",
+        description: "Raise your monitor to eye level with this sustainable bamboo stand. Includes built-in slots for your phone and stationery.",
+        thumbnail: "https://images.unsplash.com/photo-1615803795033-5bc500e57608?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1615803795033-5bc500e57608?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Condition", values: ["New"] }
+        ],
+        variants: [
+            {
+                title: "New",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Condition: "New" },
+                prices: [{ currency_code: "eur", amount: 3900 }]
+            }
+        ],
+        collection_id: "COLLECTION_ID_HOME_OFFICE_ESSENTIALS",
+        categories: [{ id: "CATEGORY_ID_MONITOR_STANDS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "monitor-stands" }
+    },
+    {
+        title: "Acoustic Wall Panels",
+        handle: "acoustic-wall-panels",
+        subtitle: "Better sound, better focus.",
+        description: "High-density foam panels that reduce echo and reverb in your workspace. Stylish hexagon design allows for creative patterns.",
+        thumbnail: "https://images.unsplash.com/photo-1519710192704-c6c23f8189b6?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1519710192704-c6c23f8189b6?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Color", values: ["Dark Grey", "Light Grey"] },
+            { title: "Quantity", values: ["12-Pack"] }
+        ],
+        variants: [
+            {
+                title: "Dark Grey / 12-Pack",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Dark Grey", Quantity: "12-Pack" },
+                prices: [{ currency_code: "eur", amount: 5500 }]
+            },
+            {
+                title: "Light Grey / 12-Pack",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Light Grey", Quantity: "12-Pack" },
+                prices: [{ currency_code: "eur", amount: 5500 }]
+            }
+        ],
+        collection_id: "COLLECTION_ID_CREATIVE_WORKSTATION",
+        categories: [{ id: "CATEGORY_ID_WALL_PANELS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "wall-panels" }
+    },
+    {
+        title: "Smart LED Desk Lamp",
+        handle: "smart-led-desk-lamp",
+        subtitle: "Lighting that adapts to you.",
+        description: "Adjustable color temperature and brightness via a touch-sensitive slider or mobile app. Features an integrated Qi wireless charger.",
+        thumbnail: "https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Color", values: ["Black", "Silver"] }
+        ],
+        variants: [
+            {
+                title: "Black",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Black" },
+                prices: [{ currency_code: "eur", amount: 7900 }]
+            },
+            {
+                title: "Silver",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Color: "Silver" },
+                prices: [{ currency_code: "eur", amount: 7900 }]
+            }
+        ],
+        collection_id: "COLLECTION_ID_LIGHTING_SOLUTIONS",
+        categories: [{ id: "CATEGORY_ID_DESK_LAMPS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "desk-lamps" }
+    },
+    {
+        title: "Privacy Screen Filter",
+        handle: "privacy-screen-filter",
+        subtitle: "Keep your work private.",
+        description: "Magnetic privacy filter that limits the viewing angle to +/- 30 degrees. Reduces blue light by up to 45%.",
+        thumbnail: "https://images.unsplash.com/photo-1547082299-de196ea013d6?auto=format&fit=crop&w=800&q=80",
+        is_giftcard: false,
+        status: utils_1.ProductStatus.PUBLISHED,
+        discountable: true,
+        images: [
+            { url: "https://images.unsplash.com/photo-1547082299-de196ea013d6?auto=format&fit=crop&w=1200&q=80" }
+        ],
+        options: [
+            { title: "Size", values: ["13 inch", "15 inch"] }
+        ],
+        variants: [
+            {
+                title: "13 inch",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Size: "13 inch" },
+                prices: [{ currency_code: "eur", amount: 2500 }]
+            },
+            {
+                title: "15 inch",
+                allow_backorder: false,
+                manage_inventory: true,
+                options: { Size: "15 inch" },
+                prices: [{ currency_code: "eur", amount: 3000 }]
+            }
+        ],
+        collection_id: "COLLECTION_ID_ACCESSORIES",
+        categories: [{ id: "CATEGORY_ID_PRIVACY_SCREENS" }],
+        sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+        additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+        metadata: { category_handle: "privacy-screens" }
     }
 ];
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2VlZC1wcm9kdWN0cy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3NyYy9zY3JpcHRzL3NlZWQvc2VlZC1wcm9kdWN0cy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSxxREFBeUQ7QUFFNUMsUUFBQSxnQkFBZ0IsR0FBRztJQUM5QjtRQUNFLEtBQUssRUFBRSxrQ0FBa0M7UUFDekMsTUFBTSxFQUFFLGtDQUFrQztRQUMxQyxRQUFRLEVBQUUsa0NBQWtDO1FBQzVDLFdBQVcsRUFDVCx5R0FBeUc7UUFDM0csV0FBVyxFQUFFLEtBQUs7UUFDbEIsTUFBTSxFQUFFLHFCQUFhLENBQUMsU0FBUztRQUMvQixTQUFTLEVBQ1AsZ0hBQWdIO1FBQ2xILE9BQU8sRUFBRTtZQUNQO2dCQUNFLEtBQUssRUFBRSxPQUFPO2dCQUNkLE1BQU0sRUFBRSxDQUFDLE9BQU8sQ0FBQzthQUNsQjtTQUNGO1FBQ0QsUUFBUSxFQUFFO1lBQ1I7Z0JBQ0UsS0FBSyxFQUFFLE9BQU87Z0JBQ2QsZUFBZSxFQUFFLEtBQUs7Z0JBQ3RCLGdCQUFnQixFQUFFLElBQUk7Z0JBQ3RCLE1BQU0sRUFBRTtvQkFDTjt3QkFDRSxNQUFNLEVBQUUsRUFBRTt3QkFDVixhQUFhLEVBQUUsS0FBSztxQkFDckI7aUJBQ0Y7Z0JBQ0QsT0FBTyxFQUFFO29CQUNQLEtBQUssRUFBRSxPQUFPO2lCQUNmO2FBQ0Y7U0FDRjtRQUNELFlBQVksRUFBRSxJQUFJO1FBQ2xCLE1BQU0sRUFBRTtZQUNOO2dCQUNFLEdBQUcsRUFBRSxnSEFBZ0g7YUFDdEg7WUFDRDtnQkFDRSxHQUFHLEVBQUUsZ0hBQWdIO2FBQ3RIO1NBQ0Y7S0FDRjtJQUNEO1FBQ0UsS0FBSyxFQUFFLDBCQUEwQjtRQUNqQyxNQUFNLEVBQUUsaUJBQWlCO1FBQ3pCLFFBQVEsRUFBRSxFQUFFO1FBQ1osV0FBVyxFQUNULGlQQUFpUDtRQUNuUCxXQUFXLEVBQUUsS0FBSztRQUNsQixNQUFNLEVBQUUscUJB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
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2VlZC1wcm9kdWN0cy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3NyYy9zY3JpcHRzL3NlZWQvc2VlZC1wcm9kdWN0cy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7QUFBQSxxREFBMEQ7QUFFN0MsUUFBQSxnQkFBZ0IsR0FBRztJQUM5QjtRQUNFLEtBQUssRUFBRSxnQ0FBZ0M7UUFDdkMsTUFBTSxFQUFFLGdDQUFnQztRQUN4QyxRQUFRLEVBQUUsdUNBQXVDO1FBQ2pELFdBQVcsRUFBRSx3TkFBd047UUFDck8sU0FBUyxFQUFFLDhGQUE4RjtRQUN6RyxXQUFXLEVBQUUsS0FBSztRQUNsQixNQUFNLEVBQUUscUJBQWEsQ0FBQyxTQUFTO1FBQy9CLFlBQVksRUFBRSxJQUFJO1FBQ2xCLE1BQU0sRUFBRTtZQUNOLEVBQUUsR0FBRyxFQUFFLCtGQUErRixFQUFFO1lBQ3hHLEVBQUUsR0FBRyxFQUFFLCtGQUErRixFQUFFO1NBQ3pHO1FBQ0QsT0FBTyxFQUFFO1lBQ1AsRUFBRSxLQUFLLEVBQUUsT0FBTyxFQUFFLE1BQU0sRUFBRSxDQUFDLEtBQUssRUFBRSxRQUFRLENBQUMsRUFBRTtZQUM3QyxFQUFFLEtBQUssRUFBRSxNQUFNLEVBQUUsTUFBTSxFQUFFLENBQUMsT0FBTyxFQUFFLE9BQU8sQ0FBQyxFQUFFO1NBQzlDO1FBQ0QsUUFBUSxFQUFFO1lBQ1I7Z0JBQ0UsS0FBSyxFQUFFLGFBQWE7Z0JBQ3BCLGVBQWUsRUFBRSxLQUFLO2dCQUN0QixnQkFBZ0IsRUFBRSxJQUFJO2dCQUN0QixPQUFPLEVBQUUsRUFBRSxLQUFLLEVBQUUsS0FBSyxFQUFFLElBQUksRUFBRSxPQUFPLEVBQUU7Z0JBQ3hDLE1BQU0sRUFBRSxDQUFDLEVBQUUsYUFBYSxFQUFFLEtBQUssRUFBRSxNQUFNLEVBQUUsS0FBSyxFQUFFLENBQUM7YUFDbEQ7WUFDRDtnQkFDRSxLQUFLLEVBQUUsYUFBYTtnQkFDcEIsZUFBZSxFQUFFLEtBQUs7Z0JB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

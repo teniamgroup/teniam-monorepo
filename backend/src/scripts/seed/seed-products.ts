@@ -1,601 +1,843 @@
-import { ProductStatus } from '@medusajs/framework/utils'
+import { ProductStatus } from "@medusajs/framework/utils";
 
 export const productsToInsert = [
   {
-    title: 'AIR FORCE 1 LUXE UNISEX Sneakers',
-    handle: 'air-force-1-luxe-unisex-sneakers',
-    subtitle: ' foam midsole with Air-Sole unit',
-    description:
-      'The iconic Air Force 1 with premium materials and enhanced comfort. Features a full-grain leather upper',
+    title: "Zenith Motorized Standing Desk",
+    handle: "zenith-motorized-standing-desk",
+    subtitle: "Elevate your productivity, literally.",
+    description: "The Zenith Standing Desk features a dual motor system for smooth, quiet height adjustments. With a solid oak top and reinforced steel frame, it provides a wobble free experience whether you are sitting or standing.",
+    thumbnail: "https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=800&q=80",
     is_giftcard: false,
     status: ProductStatus.PUBLISHED,
-    thumbnail:
-      'https://mercur-connect.s3.eu-central-1.amazonaws.com/AIR-FORCE-1-LUXE-UNISEX-1 -01JRYW1QY88H8T98HNPZF7NJTF.png',
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1593062096033-9a26b09da705?auto=format&fit=crop&w=1200&q=80" },
+      { url: "https://images.unsplash.com/photo-1616533382363-b4bca072473c?auto=format&fit=crop&w=1200&q=80" }
+    ],
     options: [
-      {
-        title: 'Color',
-        values: ['White']
-      }
+      { title: "Color", values: ["Oak", "Walnut"] },
+      { title: "Size", values: ["120cm", "140cm"] }
     ],
     variants: [
       {
-        title: 'White',
+        title: "Oak / 120cm",
         allow_backorder: false,
         manage_inventory: true,
-        prices: [
-          {
-            amount: 99,
-            currency_code: 'eur'
-          }
-        ],
-        options: {
-          Color: 'White'
-        }
-      }
-    ],
-    discountable: true,
-    images: [
-      {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/AIR-FORCE-1-LUXE-UNISEX-1 -01JRYW1QY88H8T98HNPZF7NJTF.png'
+        options: { Color: "Oak", Size: "120cm" },
+        prices: [{ currency_code: "eur", amount: 49900 }]
       },
       {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/AIR-FORCE-1-LUXE-UNISEX-2 -01JRYW1QY96TV72HCK602R8ASK.png'
+        title: "Oak / 140cm",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Oak", Size: "140cm" },
+        prices: [{ currency_code: "eur", amount: 54900 }]
+      },
+      {
+        title: "Walnut / 120cm",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Walnut", Size: "120cm" },
+        prices: [{ currency_code: "eur", amount: 52900 }]
+      },
+      {
+        title: "Walnut / 140cm",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Walnut", Size: "140cm" },
+        prices: [{ currency_code: "eur", amount: 57900 }]
       }
-    ]
+    ],
+    collection_id: "COLLECTION_ID_HOME_OFFICE_ESSENTIALS",
+    categories: [{ id: "CATEGORY_ID_STANDING_DESKS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "standing-desks" }
   },
   {
-    title: 'New Runner Flag Sneakers',
-    handle: 'new-runner-flag',
-    subtitle: '',
-    description:
-      'Heritage-inspired running silhouette featuring distinctive flag details and national color accents. Combines lightweight cushioning, breathable materials, and nostalgic design elements for a unique statement piece with exceptional comfort.',
+    title: "Swift-Click Pro Wireless Mouse",
+    handle: "swift-click-pro-wireless-mouse",
+    subtitle: "Precision at your fingertips.",
+    description: "Engineered for professional gamers, the Swift-Click Pro offers a 26k DPI sensor and sub-1ms latency. Its ergonomic shell reduces wrist fatigue during long sessions.",
+    thumbnail: "https://images.unsplash.com/photo-1527698266440-12104e498b76?auto=format&fit=crop&w=800&q=80",
     is_giftcard: false,
     status: ProductStatus.PUBLISHED,
-    thumbnail:
-      'https://mercur-connect.s3.eu-central-1.amazonaws.com/New-Runner-Flag-1-01JRYW0TG1KQ5T688H810M9BE3.png',
     discountable: true,
-    variants: [
-      {
-        title: 'Brown / 41 / New',
-        allow_backorder: false,
-        manage_inventory: true,
-        options: { Color: 'Brown', Size: '41', Condition: 'New' },
-        variant_rank: 0,
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 59
-          }
-        ]
-      },
-      {
-        title: 'Brown / 40 / New',
-        allow_backorder: false,
-        manage_inventory: true,
-        options: { Color: 'Brown', Size: '40', Condition: 'New' },
-        variant_rank: 1,
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 59
-          }
-        ]
-      },
-      {
-        title: 'Brown / 39 / New',
-        allow_backorder: false,
-        manage_inventory: true,
-        variant_rank: 2,
-        options: { Color: 'Brown', Size: '39', Condition: 'New' },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 59
-          }
-        ]
-      },
-      {
-        title: 'Brown / 38 / New',
-        allow_backorder: false,
-        manage_inventory: true,
-        variant_rank: 3,
-        options: { Color: 'Brown', Size: '38', Condition: 'New' },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 59
-          }
-        ]
-      },
-      {
-        title: 'Brown / 41 / Used',
-        allow_backorder: false,
-        manage_inventory: true,
-        variant_rank: 4,
-        options: { Color: 'Brown', Size: '41', Condition: 'Used' },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 39
-          }
-        ]
-      },
-      {
-        title: 'Brown / 40 / Used',
-        allow_backorder: false,
-        manage_inventory: true,
-        variant_rank: 5,
-        options: { Color: 'Brown', Size: '40', Condition: 'Used' },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 39
-          }
-        ]
-      },
-      {
-        title: 'Brown / 39 / Used',
-        allow_backorder: false,
-        manage_inventory: true,
-        variant_rank: 5,
-        options: { Color: 'Brown', Size: '39', Condition: 'Used' },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 39
-          }
-        ]
-      },
-      {
-        title: 'Brown / 38 / Used',
-        allow_backorder: false,
-        manage_inventory: true,
-        variant_rank: 5,
-        options: { Color: 'Brown', Size: '38', Condition: 'Used' },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 39
-          }
-        ]
-      }
+    images: [
+      { url: "https://images.unsplash.com/photo-1527698266440-12104e498b76?auto=format&fit=crop&w=1200&q=80" }
     ],
     options: [
+      { title: "Color", values: ["Black", "White"] }
+    ],
+    variants: [
       {
-        title: 'Size',
-        values: ['38', '39', '40', '41']
+        title: "Black",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Black" },
+        prices: [{ currency_code: "eur", amount: 8900 }]
       },
       {
-        title: 'Color',
-        values: ['Brown']
-      },
-      {
-        title: 'Condition',
-        values: ['New', 'Used']
+        title: "White",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "White" },
+        prices: [{ currency_code: "eur", amount: 8900 }]
       }
     ],
-    images: [
-      {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/New-Runner-Flag-1-01JRYW0TG1KQ5T688H810M9BE3.png'
-      }
-    ]
+    collection_id: "COLLECTION_ID_GAMING_GEAR",
+    categories: [{ id: "CATEGORY_ID_MICE_TRACKPADS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "mice-trackpads" }
   },
   {
-    title: 'CLASSIC CUPSOLE Sneakers',
-    handle: 'classic-cupsole-sneakers',
-    subtitle: '',
-    description: 'Retro court style reimagined for today',
+    title: "Lunar Felt Desk Mat",
+    handle: "lunar-felt-desk-mat",
+    subtitle: "Warmth and texture for your workspace.",
+    description: "Made from premium synthetic felt with a non-slip cork base, this mat protects your desk while providing a soft surface for your hands and devices.",
+    thumbnail: "https://images.unsplash.com/photo-1616412184852-c0fb9903930b?auto=format&fit=crop&w=800&q=80",
     is_giftcard: false,
     status: ProductStatus.PUBLISHED,
-    thumbnail:
-      'https://mercur-connect.s3.eu-central-1.amazonaws.com/CLASSIC-CUPSOLE-1 -01JRYVZQBJ85B2MPZ3Q0KTBYGA.png',
     discountable: true,
-    variants: [
-      {
-        title: 'White / Used / 41',
-        allow_backorder: false,
-        manage_inventory: true,
-        variant_rank: 0,
-        options: {
-          Color: 'White',
-          Size: '41',
-          Condition: 'Used'
-        },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 59
-          }
-        ]
-      },
-      {
-        title: 'Black / Used / 41',
-        allow_backorder: false,
-        manage_inventory: true,
-        variant_rank: 1,
-        options: {
-          Color: 'Black',
-          Size: '41',
-          Condition: 'Used'
-        },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 69
-          }
-        ]
-      }
+    images: [
+      { url: "https://images.unsplash.com/photo-1616412184852-c0fb9903930b?auto=format&fit=crop&w=1200&q=80" }
     ],
     options: [
+      { title: "Size", values: ["Medium", "Large"] },
+      { title: "Color", values: ["Grey", "Anthracite"] }
+    ],
+    variants: [
       {
-        title: 'Size',
-        values: ['40', '41']
+        title: "Medium / Grey",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Size: "Medium", Color: "Grey" },
+        prices: [{ currency_code: "eur", amount: 3500 }]
       },
       {
-        title: 'Color',
-        values: ['White', 'Black']
+        title: "Medium / Anthracite",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Size: "Medium", Color: "Anthracite" },
+        prices: [{ currency_code: "eur", amount: 3500 }]
       },
       {
-        title: 'Condition',
-        values: ['New', 'Used']
+        title: "Large / Grey",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Size: "Large", Color: "Grey" },
+        prices: [{ currency_code: "eur", amount: 4500 }]
+      },
+      {
+        title: "Large / Anthracite",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Size: "Large", Color: "Anthracite" },
+        prices: [{ currency_code: "eur", amount: 4500 }]
       }
     ],
-    images: [
-      {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/CLASSIC-CUPSOLE-1 -01JRYVZQBJ85B2MPZ3Q0KTBYGA.png'
-      }
-    ]
+    collection_id: "COLLECTION_ID_HOME_OFFICE_ESSENTIALS",
+    categories: [{ id: "CATEGORY_ID_DESK_MATS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "desk-mats" }
   },
   {
-    title: 'STORM 96 2K LITE Sneakers',
-    handle: 'storm-96-2k-lite',
-    subtitle: '',
-    description:
-      "Retro-futuristic design combining '90s athletic aesthetics with contemporary technology. Features sculpted, lightweight midsole, mixed material upper, and unique lacing system for stand-out street style with all-day wearability.",
+    title: "Aero-Flow Monitor Arm",
+    handle: "aero-flow-monitor-arm",
+    subtitle: "Free your desk space.",
+    description: "A gas-spring monitor arm that allows for effortless height, tilt, and swivel adjustments. Compatible with VESA mounts and screens up to 34 inches.",
+    thumbnail: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=800&q=80",
     is_giftcard: false,
     status: ProductStatus.PUBLISHED,
-    thumbnail:
-      'https://mercur-connect.s3.eu-central-1.amazonaws.com/STORM-96-2K-LITE-1-01JRYVZ58MYDM626NAX1E9ZDDQ.png',
     discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Condition", values: ["New", "Used"] }
+    ],
     variants: [
       {
-        title: 'Black / 42',
+        title: "New",
         allow_backorder: false,
         manage_inventory: true,
-        variant_rank: 0,
-        options: {
-          Color: 'Black',
-          Size: '42'
-        },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 79
-          }
-        ]
+        options: { Condition: "New" },
+        prices: [{ currency_code: "eur", amount: 12000 }]
       },
       {
-        title: 'Black / 41',
+        title: "Used",
         allow_backorder: false,
         manage_inventory: true,
-        variant_rank: 1,
-        options: {
-          Color: 'Black',
-          Size: '41'
-        },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 79
-          }
-        ]
+        options: { Condition: "Used" },
+        prices: [{ currency_code: "eur", amount: 8500 }]
       }
     ],
-    options: [
-      { title: 'Size', values: ['41', '42'] },
-      { title: 'Color', values: ['Black'] }
-    ],
-    images: [
-      {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/STORM-96-2K-LITE-1-01JRYVZ58MYDM626NAX1E9ZDDQ.png'
-      }
-    ]
+    collection_id: "COLLECTION_ID_CREATIVE_WORKSTATION",
+    categories: [{ id: "CATEGORY_ID_MONITOR_ARMS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "monitor-arms" }
   },
   {
-    title: 'U574 UNISEX Sneakers',
-    handle: 'u574-unisex-sneakers',
-    subtitle: '',
-    description:
-      'Featuring the classic 574 silhouette with updated materials and cushioning. Includes ENCAP midsole technology for support and maximum durability, plus a suede/mesh upper for breathability and style.',
+    title: "Studio-Clarity Open-Back Headphones",
+    handle: "studio-clarity-open-back-headphones",
+    subtitle: "Professional grade soundstage.",
+    description: "Experience music the way it was intended. These open-back headphones provide an expansive soundstage and neutral frequency response for mixing and critical listening.",
+    thumbnail: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
     is_giftcard: false,
     status: ProductStatus.PUBLISHED,
-    thumbnail:
-      'https://mercur-connect.s3.eu-central-1.amazonaws.com/U574-UNISEX-1-01JRYVYJVR8ZWQF87V8NS2HHX9.png',
     discountable: true,
-    variants: [
-      {
-        title: '37 / Orange / New',
-        allow_backorder: false,
-        manage_inventory: true,
-        variant_rank: 0,
-        options: {
-          Color: 'Orange',
-          Size: '37',
-          Condition: 'New'
-        },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 87
-          }
-        ]
-      }
+    images: [
+      { url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1200&q=80" }
     ],
     options: [
-      { title: 'Color', values: ['Orange'] },
-      { title: 'Size', values: ['37'] },
-      { title: 'Condition', values: ['Used', 'New'] }
+      { title: "Color", values: ["Silver", "Black"] }
     ],
-    images: [
+    variants: [
       {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/U574-UNISEX-1-01JRYVYJVR8ZWQF87V8NS2HHX9.png'
+        title: "Silver",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Silver" },
+        prices: [{ currency_code: "eur", amount: 29900 }]
       },
       {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/U574-UNISEX-2-01JRYVYJVTX6NRM2CCEPR6T994.png'
-      }
-    ]
-  },
-  {
-    title: 'Air VaporMax 2023 Flyknit Triple Black Sneakers',
-    handle: 'air-vapormax-2023-flyknit-triple-black-sneakers',
-    subtitle: '',
-    description:
-      'Revolutionary cushioning with VaporMax Air technology and lightweight Flyknit construction. The unique sole eliminates excess weight, while the sleek triple black colorway offers versatile styling options.',
-    is_giftcard: false,
-    status: ProductStatus.PUBLISHED,
-    thumbnail:
-      'https://mercur-connect.s3.eu-central-1.amazonaws.com/Air-VaporMax-2023-Flyknit-Triple-Black-1 -01JRYVXVMV7D60YFGHGCY7FD1K.png',
-    discountable: true,
-    variants: [
-      {
-        title: 'Black / 41 / New',
+        title: "Black",
         allow_backorder: false,
         manage_inventory: true,
-        variant_rank: 0,
-        options: { Color: 'Black', Size: '41', Condition: 'New' },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 99
-          }
-        ]
+        options: { Color: "Black" },
+        prices: [{ currency_code: "eur", amount: 29900 }]
       }
     ],
-    options: [
-      { title: 'Color', values: ['Black'] },
-      { title: 'Size', values: ['41'] },
-      { title: 'Condition', values: ['Used', 'New'] }
-    ],
+    collection_id: "COLLECTION_ID_AUDIO_VISUAL",
+    categories: [{ id: "CATEGORY_ID_HEADPHONES" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "headphones" }
+  },
+  {
+    title: "RTX 5080 Ultra GPU",
+    handle: "rtx-5080-ultra-gpu",
+    subtitle: "The ultimate gaming beast.",
+    description: "Push the limits of 4K gaming with the latest architectural breakthroughs. Features 16GB of GDDR7 memory and incredible ray-tracing performance.",
+    thumbnail: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: false,
     images: [
+      { url: "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Condition", values: ["New"] }
+    ],
+    variants: [
       {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/Air-VaporMax-2023-Flyknit-Triple-Black-1 -01JRYVXVMV7D60YFGHGCY7FD1K.png'
+        title: "New",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Condition: "New" },
+        prices: [{ currency_code: "eur", amount: 119900 }]
+      }
+    ],
+    collection_id: "COLLECTION_ID_CUSTOM_BUILDS",
+    categories: [{ id: "CATEGORY_ID_GPUS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "gpus" }
+  },
+  {
+    title: "Mechanical Switch Sampler Pack",
+    handle: "mechanical-switch-sampler-pack",
+    subtitle: "Find your perfect click.",
+    description: "Can't decide on a switch? This sampler includes 12 different mechanical switches ranging from linear to clicky and tactile.",
+    thumbnail: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Set Size", values: ["12-Pack", "24-Pack"] }
+    ],
+    variants: [
+      {
+        title: "12-Pack",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { "Set Size": "12-Pack" },
+        prices: [{ currency_code: "eur", amount: 1900 }]
       },
       {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/Air-VaporMax-2023-Flyknit-Triple-Black-2 -01JRYVXVMZS1REFQNM6WKJWDPG.png'
-      }
-    ]
-  },
-  {
-    title: 'Reelwind Sneakers',
-    handle: 'reelwind-sneakers',
-    subtitle: '',
-    description:
-      'Performance-meets-lifestyle design with responsive cushioning and flexible support. Made with recycled materials, featuring a breathable upper and durable rubber outsole for all-day comfort.',
-    is_giftcard: false,
-    status: ProductStatus.PUBLISHED,
-    thumbnail:
-      'https://mercur-connect.s3.eu-central-1.amazonaws.com/Reelwind-1-01JRYVWVF8XVHG23RXMNAY2EFJ.png',
-    discountable: true,
-    variants: [
-      {
-        title: 'Red / 38',
+        title: "24-Pack",
         allow_backorder: false,
         manage_inventory: true,
-        variant_rank: 0,
-        options: { Color: 'Red', Size: '38' },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 59
-          }
-        ]
+        options: { "Set Size": "24-Pack" },
+        prices: [{ currency_code: "eur", amount: 3500 }]
       }
     ],
+    collection_id: "COLLECTION_ID_CUSTOM_BUILDS",
+    categories: [{ id: "CATEGORY_ID_SWITCHES" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "switches" }
+  },
+  {
+    title: "Titan 4K Curved Monitor",
+    handle: "titan-4k-curved-monitor",
+    subtitle: "Immersive visuals for work and play.",
+    description: "A 34-inch ultra-wide curved display with 144Hz refresh rate and HDR1000. Perfect for cinematic gaming and large-scale creative workflows.",
+    thumbnail: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1200&q=80" }
+    ],
     options: [
+      { title: "Condition", values: ["New", "Used"] }
+    ],
+    variants: [
       {
-        title: 'Size',
-        values: ['38']
+        title: "New",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Condition: "New" },
+        prices: [{ currency_code: "eur", amount: 89900 }]
       },
       {
-        title: 'Color',
-        values: ['Red']
-      }
-    ],
-    images: [
-      {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/Reelwind-1-01JRYVWVF8XVHG23RXMNAY2EFJ.png'
-      }
-    ]
-  },
-  {
-    title: 'Cool Balance U9060EEE Sneakers',
-    handle: 'u9060eee',
-    subtitle: '',
-    description:
-      'Modern interpretation of the classic running silhouette with exaggerated proportions and enhanced cushioning. Features a combination of premium suede and mesh with an angular, sculptural midsole design for contemporary street style.',
-    is_giftcard: false,
-    status: ProductStatus.PUBLISHED,
-    thumbnail:
-      'https://mercur-connect.s3.eu-central-1.amazonaws.com/U9060EEE-1-01JRYVW83SET4B4ZYZVSK39FDF.png',
-    discountable: true,
-    variants: [
-      {
-        title: 'Gray / Used',
+        title: "Used",
         allow_backorder: false,
         manage_inventory: true,
-        variant_rank: 1,
-        options: {
-          Color: 'Gray',
-          Condition: 'Used'
-        },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 39
-          }
-        ]
+        options: { Condition: "Used" },
+        prices: [{ currency_code: "eur", amount: 65000 }]
+      }
+    ],
+    collection_id: "COLLECTION_ID_GAMING_GEAR",
+    categories: [{ id: "CATEGORY_ID_MONITORS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "monitors" }
+  },
+  {
+    title: "Coiled Aviator USB-C Cable",
+    handle: "coiled-aviator-usb-c-cable",
+    subtitle: "The aesthetic choice for keyboards.",
+    description: "Durable paracord-wrapped cable with a high-quality aviator connector. Adds a professional look to any mechanical keyboard setup.",
+    thumbnail: "https://images.unsplash.com/photo-1619103300867-6260d60914ad?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1619103300867-6260d60914ad?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Color", values: ["Sky Blue", "Midnight", "Laser Pink"] }
+    ],
+    variants: [
+      {
+        title: "Sky Blue",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Sky Blue" },
+        prices: [{ currency_code: "eur", amount: 4500 }]
       },
       {
-        title: 'Gray / New',
+        title: "Midnight",
         allow_backorder: false,
         manage_inventory: true,
-        variant_rank: 0,
-        options: { Color: 'Gray', Condition: 'New' },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 79
-          }
-        ]
-      }
-    ],
-    options: [
-      {
-        title: 'Condition',
-        values: ['New', 'Used']
+        options: { Color: "Midnight" },
+        prices: [{ currency_code: "eur", amount: 4500 }]
       },
       {
-        title: 'Color',
-        values: ['Gray']
-      }
-    ],
-    images: [
-      {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/U9060EEE-1-01JRYVW83SET4B4ZYZVSK39FDF.png'
-      }
-    ]
-  },
-  {
-    title: 'Brown Sneakers',
-    handle: 'brown-sneakers',
-    subtitle: 'Cosy',
-    description:
-      'Classic brown sneakers with leather and suede upper, and a durable rubber sole. Timeless and versatile.',
-    is_giftcard: false,
-    status: ProductStatus.PUBLISHED,
-    thumbnail:
-      'https://mercur-connect.s3.eu-central-1.amazonaws.com/u2735941527_Product_photography_of_brown_Adidas_samba_Sneaker_80c8f007-dcfa-4e5b-b8ac-bf88851a7376_0-01JRWZZ5V9M2ZC0K0WSC96E4AZ.png',
-    discountable: true,
-    variants: [
-      {
-        title: 'Brown / New',
+        title: "Laser Pink",
         allow_backorder: false,
         manage_inventory: true,
-        variant_rank: 0,
-        options: {
-          Color: 'Brown',
-          Condition: 'New'
-        },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 89
-          }
-        ]
+        options: { Color: "Laser Pink" },
+        prices: [{ currency_code: "eur", amount: 4500 }]
       }
     ],
-    options: [
-      { title: 'Color', values: ['Brown'] },
-      { title: 'Condition', values: ['New'] }
-    ],
-    images: [
-      {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/u2735941527_Product_photography_of_brown_Adidas_samba_Sneaker_80c8f007-dcfa-4e5b-b8ac-bf88851a7376_0-01JRWZZ5V9M2ZC0K0WSC96E4AZ.png'
-      }
-    ]
+    collection_id: "COLLECTION_ID_ACCESSORIES",
+    categories: [{ id: "CATEGORY_ID_CABLES" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "cables" }
   },
   {
-    title: 'Green high-tops',
-    handle: 'green-high-tops',
-    subtitle: '',
-    description:
-      'Bold green high-tops with classic canvas upper and rubber sole. A timeless streetwear staple.',
+    title: "Minimalist Desktop Organizer",
+    handle: "minimalist-desktop-organizer",
+    subtitle: "A place for everything.",
+    description: "A modular organization tray for your pens, cards, and everyday carry. Features magnetic attachments and a high-quality aluminum finish.",
+    thumbnail: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?auto=format&fit=crop&w=800&q=80",
     is_giftcard: false,
     status: ProductStatus.PUBLISHED,
-    thumbnail:
-      'https://mercur-connect.s3.eu-central-1.amazonaws.com/u2735941527_Product_photography_of_green_converse_Sneakers_no_1ef027ea-f31f-4996-b419-63f85716a277_1-01JRWZYCWYAD4QVMRRTFVWHHDK.png',
     discountable: true,
-    variants: [
-      {
-        title: 'Green / 40 / New',
-        allow_backorder: false,
-        manage_inventory: true,
-        variant_rank: 0,
-        options: { Color: 'Green', Size: '40', Condition: 'New' },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 99
-          }
-        ]
-      }
+    images: [
+      { url: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?auto=format&fit=crop&w=1200&q=80" }
     ],
     options: [
-      { title: 'Color', values: ['Green'] },
-      { title: 'Size', values: ['40'] },
-      { title: 'Condition', values: ['Used', 'New'] }
+      { title: "Color", values: ["Silver", "Space Grey"] }
     ],
-    images: [
+    variants: [
       {
-        url: 'https://mercur-connect.s3.eu-central-1.amazonaws.com/u2735941527_Product_photography_of_green_converse_Sneakers_no_1ef027ea-f31f-4996-b419-63f85716a277_1-01JRWZYCWYAD4QVMRRTFVWHHDK.png'
+        title: "Silver",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Silver" },
+        prices: [{ currency_code: "eur", amount: 5900 }]
+      },
+      {
+        title: "Space Grey",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Space Grey" },
+        prices: [{ currency_code: "eur", amount: 5900 }]
       }
-    ]
+    ],
+    collection_id: "COLLECTION_ID_HOME_OFFICE_ESSENTIALS",
+    categories: [{ id: "CATEGORY_ID_STORAGE_ORGANISERS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "storage-organisers" }
   },
   {
-    title: 'High Sneakers',
-    handle: 'high-sneakers',
-    subtitle: 'Purple, beige, and orange',
-    description:
-      'High Sneakers in a bold mix of purple, beige, and orange. Premium materials, iconic silhouette, and standout color blocking.',
+    title: "Pro-Stream XLR Microphone",
+    handle: "pro-stream-xlr-microphone",
+    subtitle: "Broadcast-quality voice.",
+    description: "Large-diaphragm condenser microphone designed for podcasters and streamers. Requires 48V phantom power via an audio interface.",
+    thumbnail: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=80",
     is_giftcard: false,
     status: ProductStatus.PUBLISHED,
-    thumbnail: 'https://i.imgur.com/zIcEOTS.png',
     discountable: true,
-    variants: [
-      {
-        title: 'High Sneakers',
-        allow_backorder: false,
-        manage_inventory: true,
-        variant_rank: 0,
-        options: { Color: 'Purple' },
-        prices: [
-          {
-            currency_code: 'eur',
-            amount: 119
-          }
-        ]
-      }
+    images: [
+      { url: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80" }
     ],
     options: [
+      { title: "Condition", values: ["New", "Used"] }
+    ],
+    variants: [
       {
-        title: 'Color',
-        values: ['Purple']
+        title: "New",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Condition: "New" },
+        prices: [{ currency_code: "eur", amount: 24900 }]
+      },
+      {
+        title: "Used",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Condition: "Used" },
+        prices: [{ currency_code: "eur", amount: 18000 }]
       }
     ],
+    collection_id: "COLLECTION_ID_AUDIO_VISUAL",
+    categories: [{ id: "CATEGORY_ID_MICROPHONES" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "microphones" }
+  },
+  {
+    title: "Hex-Grid RGB Wall Panels",
+    handle: "hex-grid-rgb-wall-panels",
+    subtitle: "Paint your walls with light.",
+    description: "Smart LED panels that sync with your computer or music. Easy to install with included adhesive strips. Expandable up to 30 panels.",
+    thumbnail: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
     images: [
+      { url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Pack Size", values: ["7-Pack", "15-Pack"] }
+    ],
+    variants: [
       {
-        url: 'https://i.imgur.com/zIcEOTS.png'
+        title: "7-Pack",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { "Pack Size": "7-Pack" },
+        prices: [{ currency_code: "eur", amount: 14900 }]
+      },
+      {
+        title: "15-Pack",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { "Pack Size": "15-Pack" },
+        prices: [{ currency_code: "eur", amount: 25900 }]
       }
-    ]
+    ],
+    collection_id: "COLLECTION_ID_LIGHTING_SOLUTIONS",
+    categories: [{ id: "CATEGORY_ID_RGB_LIGHTING" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "rgb-lighting" }
+  },
+  {
+    title: "Ergo-Comfort Desk Chair",
+    handle: "ergo-comfort-desk-chair",
+    subtitle: "Support for your spine.",
+    description: "Breathable mesh back with adjustable lumbar support and 4D armrests. Designed to support 8+ hours of daily use.",
+    thumbnail: "https://images.unsplash.com/photo-1505843490701-5be5d0b19d58?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1505843490701-5be5d0b19d58?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Color", values: ["Onyx Black", "Storm Grey"] }
+    ],
+    variants: [
+      {
+        title: "Onyx Black",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Onyx Black" },
+        prices: [{ currency_code: "eur", amount: 34900 }]
+      },
+      {
+        title: "Storm Grey",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Storm Grey" },
+        prices: [{ currency_code: "eur", amount: 34900 }]
+      }
+    ],
+    collection_id: "COLLECTION_ID_HOME_OFFICE_ESSENTIALS",
+    categories: [{ id: "CATEGORY_ID_DESK_ACCESSORIES" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "desk-accessories" }
+  },
+  {
+    title: "Velvet Gradient Keycap Set",
+    handle: "velvet-gradient-keycap-set",
+    subtitle: "Durable PBT, beautiful colors.",
+    description: "Thick PBT doubleshot keycaps featuring a sunset gradient. Compatible with most mechanical keyboards using MX-style switches.",
+    thumbnail: "https://images.unsplash.com/photo-1618384887929-16ec33faf9c1?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1618384887929-16ec33faf9c1?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Layout", values: ["ANSI", "ISO"] }
+    ],
+    variants: [
+      {
+        title: "ANSI",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Layout: "ANSI" },
+        prices: [{ currency_code: "eur", amount: 6500 }]
+      },
+      {
+        title: "ISO",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Layout: "ISO" },
+        prices: [{ currency_code: "eur", amount: 6500 }]
+      }
+    ],
+    collection_id: "COLLECTION_ID_CUSTOM_BUILDS",
+    categories: [{ id: "CATEGORY_ID_KEYCAPS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "keycaps" }
+  },
+  {
+    title: "Sonic-Pulse Desk Speakers",
+    handle: "sonic-pulse-desk-speakers",
+    subtitle: "Compact size, massive sound.",
+    description: "High-fidelity bookshelf speakers for your desk. Features Bluetooth 5.0 and optical inputs for versatile connectivity.",
+    thumbnail: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1545454675-3531b543be5d?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Condition", values: ["New", "Used"] }
+    ],
+    variants: [
+      {
+        title: "New",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Condition: "New" },
+        prices: [{ currency_code: "eur", amount: 19900 }]
+      },
+      {
+        title: "Used",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Condition: "Used" },
+        prices: [{ currency_code: "eur", amount: 14000 }]
+      }
+    ],
+    collection_id: "COLLECTION_ID_AUDIO_VISUAL",
+    categories: [{ id: "CATEGORY_ID_DESK_SPEAKERS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "desk-speakers" }
+  },
+  {
+    title: "Thunderbolt 4 Docking Station",
+    handle: "thunderbolt-4-docking-station",
+    subtitle: "The ultimate single-cable solution.",
+    description: "Connect your laptop to dual 4K monitors, peripherals, and high-speed storage with a single Thunderbolt 4 cable. Features 90W power delivery.",
+    thumbnail: "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Power Output", values: ["90W", "120W"] }
+    ],
+    variants: [
+      {
+        title: "90W",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { "Power Output": "90W" },
+        prices: [{ currency_code: "eur", amount: 22900 }]
+      },
+      {
+        title: "120W",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { "Power Output": "120W" },
+        prices: [{ currency_code: "eur", amount: 27900 }]
+      }
+    ],
+    collection_id: "COLLECTION_ID_ACCESSORIES",
+    categories: [{ id: "CATEGORY_ID_USB_HUBS_DOCKS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "usb-hubs-docks" }
+  },
+  {
+    title: "4K Ultra-Crisp Webcam",
+    handle: "4k-ultra-crisp-webcam",
+    subtitle: "Crystal clear video for every meeting.",
+    description: "High-definition 4K webcam with auto-focus and low-light correction. Built-in privacy shutter ensures your security.",
+    thumbnail: "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1588702547919-26089e690ecc?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Color", values: ["Black", "White"] }
+    ],
+    variants: [
+      {
+        title: "Black",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Black" },
+        prices: [{ currency_code: "eur", amount: 12900 }]
+      },
+      {
+        title: "White",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "White" },
+        prices: [{ currency_code: "eur", amount: 12900 }]
+      }
+    ],
+    collection_id: "COLLECTION_ID_AUDIO_VISUAL",
+    categories: [{ id: "CATEGORY_ID_WEBCAMS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "webcams" }
+  },
+  {
+    title: "65W GaN Travel Charger",
+    handle: "65w-gan-travel-charger",
+    subtitle: "Small size, big power.",
+    description: "A compact Gallium Nitride (GaN) charger with two USB-C ports and one USB-A port. Charges your laptop and phone simultaneously.",
+    thumbnail: "https://images.unsplash.com/photo-1610492314415-d4452188448b?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1610492314415-d4452188448b?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Color", values: ["White", "Black"] }
+    ],
+    variants: [
+      {
+        title: "White",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "White" },
+        prices: [{ currency_code: "eur", amount: 4900 }]
+      },
+      {
+        title: "Black",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Black" },
+        prices: [{ currency_code: "eur", amount: 4900 }]
+      }
+    ],
+    collection_id: "COLLECTION_ID_ACCESSORIES",
+    categories: [{ id: "CATEGORY_ID_POWER_CHARGERS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "power-chargers" }
+  },
+  {
+    title: "Bamboo Monitor Stand",
+    handle: "bamboo-monitor-stand",
+    subtitle: "Eco-friendly ergonomics.",
+    description: "Raise your monitor to eye level with this sustainable bamboo stand. Includes built-in slots for your phone and stationery.",
+    thumbnail: "https://images.unsplash.com/photo-1615803795033-5bc500e57608?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1615803795033-5bc500e57608?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Condition", values: ["New"] }
+    ],
+    variants: [
+      {
+        title: "New",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Condition: "New" },
+        prices: [{ currency_code: "eur", amount: 3900 }]
+      }
+    ],
+    collection_id: "COLLECTION_ID_HOME_OFFICE_ESSENTIALS",
+    categories: [{ id: "CATEGORY_ID_MONITOR_STANDS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "monitor-stands" }
+  },
+  {
+    title: "Acoustic Wall Panels",
+    handle: "acoustic-wall-panels",
+    subtitle: "Better sound, better focus.",
+    description: "High-density foam panels that reduce echo and reverb in your workspace. Stylish hexagon design allows for creative patterns.",
+    thumbnail: "https://images.unsplash.com/photo-1519710192704-c6c23f8189b6?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1519710192704-c6c23f8189b6?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Color", values: ["Dark Grey", "Light Grey"] },
+      { title: "Quantity", values: ["12-Pack"] }
+    ],
+    variants: [
+      {
+        title: "Dark Grey / 12-Pack",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Dark Grey", Quantity: "12-Pack" },
+        prices: [{ currency_code: "eur", amount: 5500 }]
+      },
+      {
+        title: "Light Grey / 12-Pack",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Light Grey", Quantity: "12-Pack" },
+        prices: [{ currency_code: "eur", amount: 5500 }]
+      }
+    ],
+    collection_id: "COLLECTION_ID_CREATIVE_WORKSTATION",
+    categories: [{ id: "CATEGORY_ID_WALL_PANELS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "wall-panels" }
+  },
+  {
+    title: "Smart LED Desk Lamp",
+    handle: "smart-led-desk-lamp",
+    subtitle: "Lighting that adapts to you.",
+    description: "Adjustable color temperature and brightness via a touch-sensitive slider or mobile app. Features an integrated Qi wireless charger.",
+    thumbnail: "https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1534073828943-f801091bb18c?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Color", values: ["Black", "Silver"] }
+    ],
+    variants: [
+      {
+        title: "Black",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Black" },
+        prices: [{ currency_code: "eur", amount: 7900 }]
+      },
+      {
+        title: "Silver",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Color: "Silver" },
+        prices: [{ currency_code: "eur", amount: 7900 }]
+      }
+    ],
+    collection_id: "COLLECTION_ID_LIGHTING_SOLUTIONS",
+    categories: [{ id: "CATEGORY_ID_DESK_LAMPS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "desk-lamps" }
+  },
+  {
+    title: "Privacy Screen Filter",
+    handle: "privacy-screen-filter",
+    subtitle: "Keep your work private.",
+    description: "Magnetic privacy filter that limits the viewing angle to +/- 30 degrees. Reduces blue light by up to 45%.",
+    thumbnail: "https://images.unsplash.com/photo-1547082299-de196ea013d6?auto=format&fit=crop&w=800&q=80",
+    is_giftcard: false,
+    status: ProductStatus.PUBLISHED,
+    discountable: true,
+    images: [
+      { url: "https://images.unsplash.com/photo-1547082299-de196ea013d6?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    options: [
+      { title: "Size", values: ["13 inch", "15 inch"] }
+    ],
+    variants: [
+      {
+        title: "13 inch",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Size: "13 inch" },
+        prices: [{ currency_code: "eur", amount: 2500 }]
+      },
+      {
+        title: "15 inch",
+        allow_backorder: false,
+        manage_inventory: true,
+        options: { Size: "15 inch" },
+        prices: [{ currency_code: "eur", amount: 3000 }]
+      }
+    ],
+    collection_id: "COLLECTION_ID_ACCESSORIES",
+    categories: [{ id: "CATEGORY_ID_PRIVACY_SCREENS" }],
+    sales_channels: [{ id: "SALES_CHANNEL_ID_DEFAULT" }],
+    additional_data: { seller_id: "SELLER_ID_MERCIUS" },
+    metadata: { category_handle: "privacy-screens" }
   }
-]
+];

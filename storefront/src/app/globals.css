@@ -250,11 +250,47 @@ button:disabled svg path {
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  html {
+    color-scheme: light;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  html.dark {
+    color-scheme: dark;
   }
+}
+
+/* Remove blue border from sidebar when dark mode is toggled */
+.app-sidebar .sidebar-content,
+.app-sidebar .sidebar-header,
+.app-sidebar .sidebar-footer {
+  border-right: none !important;
+}
+
+/* Remove any border that might appear on the sidebar container */
+.app-sidebar,
+.sidebar {
+  border-right: none !important;
+}
+
+/* Remove focus border from dropdown menu items in sidebar */
+.app-sidebar .dropdown-menu-item:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove focus styles from theme toggle and nav user components */
+.app-sidebar .sidebar-menu-button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Override accent background color to prevent blueish appearance */
+.app-sidebar .bg-accent {
+  background-color: transparent !important;
+}
+
+/* Remove focus ring from dropdown menu items */
+.app-sidebar [role="menuitem"]:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
