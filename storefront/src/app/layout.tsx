@@ -11,6 +11,7 @@ import { retrieveCart } from '@/lib/data/cart';
 import { retrieveCustomer } from '@/lib/data/customer';
 
 import { Providers } from './providers';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const funnelDisplay = Funnel_Display({
   variable: '--font-funnel-sans',
@@ -141,8 +142,15 @@ export default async function RootLayout({
       </Head>
       <body className={`${funnelDisplay.className} relative bg-primary text-secondary antialiased`}>
         <HtmlLangSetter />
-        <Providers cart={cart as any} customer={customer}>{children}</Providers>
-        <Toaster position="top-right" />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Providers cart={cart as any} customer={customer}>{children}</Providers>
+          <Toaster position="top-right" />
+        </ThemeProvider>
       </body>
     </html>
   );

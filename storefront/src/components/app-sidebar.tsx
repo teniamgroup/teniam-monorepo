@@ -20,6 +20,7 @@ import { HttpTypes } from "@medusajs/types"
 import { NavMain } from "@/components/nav-main"
 import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
+import { ThemeToggle } from "@/components/theme-toggle"
 import {
   Sidebar,
   SidebarContent,
@@ -123,7 +124,10 @@ export function AppSidebar({ categories = [], locale = 'en', regions = [], ...pr
         <NavSecondary items={data.navSecondary} regions={regions} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter className="flex-shrink-0 border-t border-sidebar-border">
-        <NavUser user={data.user} />
+        <div className="flex flex-col gap-2">
+          <ThemeToggle />
+          <NavUser user={data.user} />
+        </div>
       </SidebarFooter>
     </Sidebar>
   )
