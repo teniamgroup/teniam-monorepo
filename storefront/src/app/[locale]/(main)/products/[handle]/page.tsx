@@ -53,11 +53,10 @@ import {
 } from "lucide-react"
 import { useCartContext } from "@/components/providers"
 import { toast } from "sonner"
-import Talk from "talkjs"
-
 import { listProducts } from "@/lib/data/products"
 import { listCategories } from "@/lib/data/categories"
 import { listRegions } from "@/lib/data/regions"
+import { ProductChatButton } from "@/components/organisms/ProductChatButton"
 import NotFound from "@/app/not-found"
 
 export default function ProductPage() {
@@ -82,18 +81,11 @@ export default function ProductPage() {
   const [reportTitle, setReportTitle] = useState("")
   const [reportDescription, setReportDescription] = useState("")
   const [reportSubmitted, setReportSubmitted] = useState(false)
-  const [chatDialogOpen, setChatDialogOpen] = useState(false)
-  const [chatMessage, setChatMessage] = useState("")
-  const [chatSent, setChatSent] = useState(false)
-  const [isInitializingChat, setIsInitializingChat] = useState(false)
-  const [chatError, setChatError] = useState<string | null>(null)
-  const [talkSession, setTalkSession] = useState<Talk.Session | null>(null)
   const [linkCopied, setLinkCopied] = useState(false)
   const [categories, setCategories] = useState<any[]>([])
   const [regions, setRegions] = useState<any[]>([])
 
   const reviewsRef = useRef<HTMLDivElement>(null)
-  const chatboxRef = useRef<HTMLDivElement>(null)
 
   // Cart context
   const { addToCart } = useCartContext()
@@ -131,89 +123,6 @@ export default function ProductPage() {
     fetchData()
   }, [handle, locale])
 
-  // TalkJS session initialization
-  useEffect(() => {
-    const initSession = async () => {
-      if (!product || talkSession) return
-
-      try {
-        await Talk.ready
-        const currentUser = new Talk.User({
-          id: "user_123456",
-          name: "Current User",
-          email: "user@example.com",
-          photoUrl: "/placeholder.svg",
-        })
-
-        const session = new Talk.Session({
-          appId: "tg9ZQZK9",
-          me: currentUser,
-        })
-
-        setTalkSession(session)
-      } catch (error) {
-        console.error("Failed to initialize TalkJS session:", error)
-      }
-    }
-
-    initSession()
-
-    return () => {
-      if (talkSession) {
-        talkSession.destroy()
-        setTalkSession(null)
-      }
-    }
-  }, [product])
-
-  // TalkJS Chatbox mounting
-  useEffect(() => {
-    let chatbox: Talk.Chatbox | undefined
-
-    const mountChatbox = async () => {
-      if (!chatDialogOpen || !chatboxRef.current || !product || !talkSession) {
-        return
-      }
-
-      try {
-        setIsInitializingChat(true)
-        setChatError(null)
-
-        const sellerUser = new Talk.User({
-          id: product.seller?.id || "seller_123",
-          name: product.seller?.name || "Seller",
-          email: product.seller?.email || "seller@example.com",
-          photoUrl: product.seller?.photo || "/placeholder.svg",
-        })
-
-        const conversationId = Talk.oneOnOneId(talkSession.me, sellerUser)
-        const conversation = talkSession.getOrCreateConversation(conversationId)
-
-        conversation.subject = product.title
-        conversation.setParticipant(talkSession.me)
-        conversation.setParticipant(sellerUser)
-
-        chatbox = talkSession.createChatbox()
-        chatbox.select(conversation)
-        chatbox.mount(chatboxRef.current)
-      } catch (error) {
-        console.error("Failed to mount chatbox:", error)
-        setChatError("Failed to initialize chat. Please try again.")
-      } finally {
-        setIsInitializingChat(false)
-      }
-    }
-
-    if (chatDialogOpen) {
-      mountChatbox()
-    }
-
-    return () => {
-      if (chatbox) {
-        chatbox.destroy()
-      }
-    }
-  }, [chatDialogOpen, talkSession, product])
 
   if (loading) {
     return (
@@ -402,65 +311,6 @@ export default function ProductPage() {
     }
   }
 
-  // Retry chat initialization
-  const retryChat = () => {
-    setChatError(null)
-    // Force re-initialization by toggling the dialog
-    setChatDialogOpen(false)
-    setTimeout(() => {
-      setChatDialogOpen(true)
-    }, 100)
-  }
-
-  // Handle chat message sending
-  const handleChatSend = async () => {
-    if (!chatMessage.trim() || !product || !talkSession) return
-
-    try {
-      const sellerUser = new Talk.User({
-        id: product.seller?.id || "seller_123",
-        name: product.seller?.name || "Seller",
-        email: product.seller?.email || "seller@example.com",
-        photoUrl: product.seller?.photo || "/placeholder.svg",
-      })
-
-      const conversationId = `conv_${product.id}_${product.seller?.id || 'seller'}`
-      const conversation = talkSession.getOrCreateConversation(conversationId)
-
-      conversation.subject = product.title
-      conversation.setParticipant(talkSession.me)
-      conversation.setParticipant(sellerUser)
-
-      // Use the session's me ID explicitly if possible
-      const meId = talkSession.me.id
-      console.log("Sending message as:", meId)
-
-      // Wait for session to be fully synchronized
-      await new Promise(resolve => setTimeout(resolve, 500))
-
-      try {
-        // Use the session's sendMessage method if available or conversation's
-        // We'll try to ensure the user is fully synchronized
-        await conversation.sendMessage(chatMessage)
-      } catch (sendError) {
-        console.error("SDK sendMessage failed:", sendError)
-        throw sendError
-      }
-
-      setChatSent(true)
-      setChatMessage("")
-
-      setTimeout(() => {
-        setChatSent(false)
-        setChatDialogOpen(false)
-      }, 3000)
-
-      toast.success("Message sent to seller!")
-    } catch (error) {
-      console.error("Failed to send message:", error)
-      toast.error("Failed to send message. Please try again.")
-    }
-  }
 
   return (
     <div className="flex-1 bg-background w-full">
@@ -860,73 +710,13 @@ export default function ProductPage() {
                     Visit Store
                   </Button>
                 </Link>
-                <Dialog open={chatDialogOpen} onOpenChange={setChatDialogOpen}>
-                  <DialogTrigger asChild>
-                    <Button className="rounded-xl">
-                      <MessageCircle className="mr-2 h-4 w-4" />
-                      Chat with Seller
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-md border border-border">
-                    {chatSent ? (
-                      <div className="flex flex-col items-center justify-center py-8">
-                        <div className="rounded-full bg-green-100 dark:bg-green-900/30 p-3 mb-4">
-                          <CheckCircle className="h-8 w-8 text-green-600" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-foreground">Message Sent!</h3>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {product.seller?.name} will respond soon.
-                        </p>
-                      </div>
-                    ) : (
-                      <>
-                        <DialogHeader className="text-primary">
-                          <DialogTitle>Message {product.seller?.name}</DialogTitle>
-                          <DialogDescription>
-                            Send a message about this product. Usually responds within {product.seller?.response_time || "1 hour"}.
-                          </DialogDescription>
-                        </DialogHeader>
-                        <div className="space-y-4 py-4 text-muted-foreground">
-                          <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
-                            <img
-                              src={product.images?.[0]?.url || "/placeholder.svg"}
-                              alt={product.title}
-                              className="h-12 w-12 rounded-md object-cover"
-                            />
-                            <div>
-                              <p className="text-sm font-medium">{product.title}</p>
-                              <p className="text-sm text-muted-foreground">
-                                ${product.variants?.[0]?.calculated_price?.calculated_amount || 'N/A'}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="chat-message">Your Message</Label>
-                            <Textarea
-                              id="chat-message"
-                              placeholder="Hi, I'm interested in this product. Is it still available?"
-                              value={chatMessage}
-                              onChange={(e) => setChatMessage(e.target.value)}
-                              className="min-h-[120px] resize-none"
-                            />
-                          </div>
-                        </div>
-                        <DialogFooter>
-                          <Button
-                            variant="outline"
-                            onClick={() => setChatDialogOpen(false)}
-                            className="bg-transparent text-foreground"
-                          >
-                            Cancel
-                          </Button>
-                          <Button onClick={handleChatSend} disabled={!chatMessage.trim()}>
-                            Send Message
-                          </Button>
-                        </DialogFooter>
-                      </>
-                    )}
-                  </DialogContent>
-                </Dialog>
+                <ProductChatButton
+                  seller={product.seller}
+                  product={product}
+                  buttonClassNames="rounded-xl"
+                  variant="filled"
+                  buttonSize="large"
+                />
               </div>
             </div>
           </div>

@@ -44,9 +44,8 @@ export function ChatBox({
         me,
       })
 
-      const conversationId = `product-${product_id || order_id}-${me.id}-${
-        other.id
-      }`
+      const conversationId = `product-${product_id || order_id}-${me.id}-${other.id
+        }`
 
       const conversation = session.getOrCreateConversation(conversationId)
 
