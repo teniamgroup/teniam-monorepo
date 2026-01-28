@@ -3,6 +3,9 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
+import { AppSidebar } from "@/components/app-sidebar"
+import { SiteHeader } from "@/components/site-header"
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
@@ -452,7 +455,7 @@ export default function ProductPage() {
                         <Mail className="mr-3 h-4 w-4" />
                         Email
                       </DropdownMenuItem>
-                      {typeof window !== "undefined" && window.navigator && window.navigator.share && (
+                      {typeof window !== "undefined" && window.navigator && navigator.share && (
                         <>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem onClick={handleNativeShare} className="cursor-pointer">

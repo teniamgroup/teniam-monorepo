@@ -59,24 +59,24 @@ export function ThemeToggle() {
                     <span>Theme: {getCurrentLabel()}</span>
                 </SidebarMenuButton>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" side="top" className="w-40">
+            <DropdownMenuContent align="start" side="top" className="w-40 border-sidebar-border border">
                 <DropdownMenuItem
                     onClick={() => setTheme("light")}
-                    className={theme === "light" ? "bg-accent" : ""}
+                // className={theme === "light" ? "bg-accent" : ""}
                 >
                     <Sun className="mr-2 h-4 w-4" />
                     Light
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => setTheme("dark")}
-                    className={theme === "dark" ? "bg-accent" : ""}
+                // className={theme === "dark" ? "bg-accent" : ""}
                 >
                     <Moon className="mr-2 h-4 w-4" />
                     Dark
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => setTheme("system")}
-                    className={theme === "system" ? "bg-accent" : ""}
+                // className={theme === "system" ? "bg-accent" : ""}
                 >
                     <Monitor className="mr-2 h-4 w-4" />
                     System
