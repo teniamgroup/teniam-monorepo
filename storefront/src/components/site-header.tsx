@@ -65,7 +65,7 @@ export function SiteHeader() {
   const total = cart?.total || 0
 
   return (
-    <header className="bg-background sticky top-0 z-50 flex w-full items-center border-b">
+    <header className="bg-background sticky top-0 z-50 flex w-full items-center border-sidebar-border border">
       <div className="flex h-14 w-full items-center gap-2 px-4">
         <Button className="h-8 w-8 text-foreground" variant="ghost" size="icon" onClick={toggleSidebar}>
           <SidebarIcon className="h-5 w-5" />

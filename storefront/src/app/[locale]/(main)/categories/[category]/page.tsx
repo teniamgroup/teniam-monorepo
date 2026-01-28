@@ -1,6 +1,7 @@
 import { ProductListingSkeleton } from "@/components/organisms/ProductListingSkeleton/ProductListingSkeleton"
-import { getCategoryByHandle } from "@/lib/data/categories"
+import { getCategoryByHandle, listCategories } from "@/lib/data/categories"
 import { Suspense } from "react"
+import { getAllCategoryIdsIncludingChildren } from "@/lib/helpers/get-all-category-ids"
 
 import type { Metadata } from "next"
 import { Breadcrumbs } from "@/components/atoms"
@@ -52,9 +53,8 @@ export async function generateMetadata({
   }
 
   const title = `${cat.name} Category`
-  const description = `${cat.name} Category - ${
-    process.env.NEXT_PUBLIC_SITE_NAME || "Storefront"
-  }`
+  const description = `${cat.name} Category - ${process.env.NEXT_PUBLIC_SITE_NAME || "Storefront"
+    }`
   const canonical = `${baseUrl}/${locale}/categories/${categoryHandle}`
 
   return {
@@ -107,6 +107,12 @@ async function Category({
     },
   ]
 
+  // Fetch all categories to check for children
+  const { categories: allCategories } = await listCategories()
+
+  // Get all category IDs including children for this category
+  const categoryIds = getAllCategoryIdsIncludingChildren(allCategories, category.id)
+
   // Small cached list for JSON-LD itemList
   const headersList = await headers()
   const host = headersList.get("host")
@@ -117,7 +123,7 @@ async function Category({
   } = await listProducts({
     countryCode: locale,
     queryParams: { limit: 8, order: "created_at", fields: "id,title,handle" },
-    category_id: category.id,
+    category_id: categoryIds,
   })
 
   const itemList = jsonLdProducts.slice(0, 8).map((p, idx) => ({
@@ -166,10 +172,10 @@ async function Category({
 
       <Suspense fallback={<ProductListingSkeleton />}>
         {bot || !ALGOLIA_ID || !ALGOLIA_SEARCH_KEY ? (
-          <ProductListing category_id={category.id} showSidebar locale={locale} />
+          <ProductListing category_id={categoryIds} showSidebar locale={locale} />
         ) : (
           <AlgoliaProductsListing
-            category_id={category.id}
+            category_id={categoryIds}
             locale={locale}
             currency_code={currency_code}
           />

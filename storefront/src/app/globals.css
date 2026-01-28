@@ -294,3 +294,38 @@ button:disabled svg path {
   outline: none !important;
   box-shadow: none !important;
 }
+
+/* Remove border from sidebar header */
+.sidebar-header {
+  border-bottom: none !important;
+}
+
+/* Remove border from sidebar content */
+.sidebar-content {
+  border-right: none !important;
+}
+
+/* Remove border from sidebar footer */
+.sidebar-footer {
+  border-top: none !important;
+}
+
+/* Remove border from sidebar container */
+[data-sidebar="sidebar"] {
+  border-right: none !important;
+}
+
+/* Remove border from sidebar wrapper */
+.sidebar-wrapper {
+  border-right: none !important;
+}
+
+/* Remove border from sidebar group */
+[data-sidebar="group"] {
+  border-right: none !important;
+}
+
+/* Remove border from sidebar menu */
+[data-sidebar="menu"] {
+  border-right: none !important;
+}

@@ -29,7 +29,7 @@ export const AlgoliaProductsListing = ({
   locale = process.env.NEXT_PUBLIC_DEFAULT_REGION,
   currency_code,
 }: {
-  category_id?: string
+  category_id?: string | string[]
   collection_id?: string
   locale?: string
   seller_handle?: string
@@ -41,19 +41,16 @@ export const AlgoliaProductsListing = ({
   const query: string = searchParams.get("query") || ""
   const page: number = +(searchParams.get("page") || 1)
 
-  const filters = `${
-    seller_handle
+  const filters = `${seller_handle
       ? `NOT seller:null AND seller.handle:${seller_handle} AND `
       : "NOT seller:null AND "
-  }NOT seller.store_status:SUSPENDED AND supported_countries:${locale} AND variants.prices.currency_code:${currency_code} AND variants.prices.amount > 0${
-    category_id
-      ? ` AND categories.id:${category_id}${
-          collection_id !== undefined
-            ? ` AND collections.id:${collection_id}`
-            : ""
-        } ${facetFilters}`
+    }NOT seller.store_status:SUSPENDED AND supported_countries:${locale} AND variants.prices.currency_code:${currency_code} AND variants.prices.amount > 0${category_id
+      ? ` AND categories.id:${category_id}${collection_id !== undefined
+        ? ` AND collections.id:${collection_id}`
+        : ""
+      } ${facetFilters}`
       : ` ${facetFilters}`
-  }`
+    }`
   return (
     <InstantSearchNext searchClient={client} indexName="products">
       <Configure

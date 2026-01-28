@@ -7,6 +7,7 @@ import { ProductFilters } from "@/components/product-filters"
 import Link from "next/link"
 import { HttpTypes } from "@medusajs/types"
 import { SellerProps } from "@/types/seller"
+import Image from "next/image"
 
 type Product = HttpTypes.StoreProduct & { seller?: SellerProps }
 
@@ -62,7 +63,7 @@ export function HomeProductListing({
 
         // Filter by category
         if (categoryFilter.length > 0) {
-            filtered = filtered.filter((p) => 
+            filtered = filtered.filter((p) =>
                 p.categories?.some(cat => categoryFilter.includes(cat.id))
             )
         }
@@ -74,6 +75,39 @@ export function HomeProductListing({
                 if (reviews.length === 0) return false
                 const avgRating = reviews.reduce((sum, r) => sum + (r?.rating || 0), 0) / reviews.length
                 return avgRating >= ratingFilter
+            })
+        }
+
+        // Filter by condition (new/used)
+        if (conditionFilter !== "all") {
+            filtered = filtered.filter((p) => {
+                // Check if the product has a "Condition" option
+                const conditionOption = p.options?.find((opt: any) =>
+                    opt.title?.toLowerCase() === 'condition'
+                )
+
+                if (conditionOption) {
+                    // Check if any variant has the matching condition value
+                    return p.variants?.some((variant: any) => {
+                        // Look for condition in variant options
+                        const variantCondition = variant.options?.find((opt: any) =>
+                            opt.option?.title?.toLowerCase() === 'condition' ||
+                            opt.option_title?.toLowerCase() === 'condition'
+                        )
+
+                        if (variantCondition) {
+                            const conditionValue = variantCondition.value || variantCondition.option_value
+                            if (conditionFilter === "new") {
+                                return conditionValue && conditionValue.toString().toLowerCase() === 'new'
+                            } else if (conditionFilter === "used") {
+                                return conditionValue && conditionValue.toString().toLowerCase() === 'used'
+                            }
+                        }
+                    })
+                }
+
+                // If no condition option exists, include the product (for products without condition filtering)
+                return true
             })
         }
 
@@ -127,17 +161,51 @@ export function HomeProductListing({
         return null
     }
 
-    const getProductPrice = (product: Product): string => {
+    const getProductPriceInfo = (product: Product) => {
         const price = product.variants?.[0]?.calculated_price
         if (price?.calculated_amount) {
-            const amount = price.calculated_amount / 100
+            const currentAmount = price.calculated_amount / 100
             const currency = price.currency_code?.toUpperCase() || 'USD'
-            return new Intl.NumberFormat('en-US', {
+            const currentPrice = new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: currency,
-            }).format(amount)
+            }).format(currentAmount)
+
+            // Check if there's a compare price (original price)
+            let comparePrice = null
+            let discountPercent = null
+
+            // Look for compare_at_price in variant metadata or attributes
+            const variant = product.variants?.[0]
+            if (variant) {
+                const compareAtPrice = variant.metadata?.compare_at_price ||
+                    variant.metadata?.original_price ||
+                    variant.metadata?.comparePrice
+
+                if (compareAtPrice) {
+                    const compareAmount = parseFloat(compareAtPrice)
+                    if (!isNaN(compareAmount) && compareAmount > currentAmount) {
+                        comparePrice = new Intl.NumberFormat('en-US', {
+                            style: 'currency',
+                            currency: currency,
+                        }).format(compareAmount)
+
+                        discountPercent = Math.round(((compareAmount - currentAmount) / compareAmount) * 100)
+                    }
+                }
+            }
+
+            return {
+                currentPrice,
+                comparePrice,
+                discountPercent
+            }
         }
-        return "Price unavailable"
+        return {
+            currentPrice: "Price unavailable",
+            comparePrice: null,
+            discountPercent: null
+        }
     }
 
     return (
@@ -177,8 +245,8 @@ export function HomeProductListing({
                         <Button
                             size="sm"
                             onClick={() => setConditionFilter("all")}
-                            className={conditionFilter === "all" 
-                                ? "bg-foreground text-background hover:bg-foreground/90" 
+                            className={conditionFilter === "all"
+                                ? "bg-foreground text-background hover:bg-foreground/90"
                                 : "bg-background text-foreground border border-border hover:bg-muted"
                             }
                         >
@@ -187,8 +255,8 @@ export function HomeProductListing({
                         <Button
                             size="sm"
                             onClick={() => setConditionFilter("new")}
-                            className={conditionFilter === "new" 
-                                ? "bg-foreground text-background hover:bg-foreground/90" 
+                            className={conditionFilter === "new"
+                                ? "bg-foreground text-background hover:bg-foreground/90"
                                 : "bg-background text-foreground border border-border hover:bg-muted"
                             }
                         >
@@ -197,16 +265,16 @@ export function HomeProductListing({
                         <Button
                             size="sm"
                             onClick={() => setConditionFilter("used")}
-                            className={conditionFilter === "used" 
-                                ? "bg-foreground text-background hover:bg-foreground/90" 
+                            className={conditionFilter === "used"
+                                ? "bg-foreground text-background hover:bg-foreground/90"
                                 : "bg-background text-foreground border border-border hover:bg-muted"
                             }
                         >
                             Used
                         </Button>
                     </div>
-                    <ProductFilters 
-                        onFiltersChange={handleFiltersChange} 
+                    <ProductFilters
+                        onFiltersChange={handleFiltersChange}
                         activeFiltersCount={activeFiltersCount}
                         products={initialProducts}
                     />
@@ -217,35 +285,60 @@ export function HomeProductListing({
                 </p>
 
                 <div
-                    className={`mt-6 grid gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8 ${
-                        singleCardView ? "grid-cols-1" : "grid-cols-2"
-                    }`}
+                    className={`mt-6 grid gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8 ${singleCardView ? "grid-cols-1" : "grid-cols-2"
+                        }`}
                 >
-                    {products.map((product) => (
-                        <Link
-                            href={`/${locale}/products/${product.handle}`}
-                            key={product.id}
-                            className="group relative"
-                        >
-                            <img
-                                alt={product.title}
-                                src={product.thumbnail || "/placeholder.svg"}
-                                className="aspect-square w-full rounded-md bg-muted object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
-                            />
-                            <div className="mt-4 flex justify-between">
-                                <div>
-                                    <h3 className="text-sm text-foreground">
-                                        <span aria-hidden="true" className="absolute inset-0" />
-                                        {product.title}
-                                    </h3>
-                                    <p className="mt-1 text-sm text-muted-foreground">
-                                        {product.seller?.name || "Unknown Seller"}
-                                    </p>
+                    {products.map((product) => {
+                        const priceInfo = getProductPriceInfo(product)
+                        const discountPercent = priceInfo.discountPercent
+
+                        return (
+                            <Link
+                                href={`/${locale}/products/${product.handle}`}
+                                key={product.id}
+                                className="group relative"
+                            >
+                                <div className="relative aspect-square w-full rounded-md bg-muted overflow-hidden group-hover:opacity-75 lg:aspect-auto lg:h-80">
+                                    <img
+                                        alt={product.title}
+                                        src={product.thumbnail || "/placeholder.svg"}
+                                        className="w-full h-full object-cover"
+                                        style={{
+                                            objectFit: 'cover',
+                                            width: '100%',
+                                            height: '100%'
+                                        }}
+                                        onError={(e) => {
+                                            // Fallback to placeholder if image fails to load
+                                            e.currentTarget.src = "/placeholder.svg"
+                                        }}
+                                    />
+                                    {discountPercent && (
+                                        <span className="absolute top-2 left-2 bg-red-500 dark:bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-md shadow-sm">
+                                            -{discountPercent}%
+                                        </span>
+                                    )}
                                 </div>
-                                <p className="text-sm font-medium text-foreground">{getProductPrice(product)}</p>
-                            </div>
-                        </Link>
-                    ))}
+                                <div className="mt-4 flex justify-between">
+                                    <div>
+                                        <h3 className="text-sm text-foreground">
+                                            <span aria-hidden="true" className="absolute inset-0" />
+                                            {product.title}
+                                        </h3>
+                                        <p className="mt-1 text-sm text-muted-foreground">
+                                            {product.seller?.name || "Unknown Seller"}
+                                        </p>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-sm font-medium text-foreground">{priceInfo.currentPrice}</p>
+                                        {priceInfo.comparePrice && (
+                                            <p className="text-xs text-muted-foreground line-through">{priceInfo.comparePrice}</p>
+                                        )}
+                                    </div>
+                                </div>
+                            </Link>
+                        )
+                    })}
                 </div>
 
                 {products.length === 0 && !loading && (

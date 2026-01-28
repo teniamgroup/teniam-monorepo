@@ -99,10 +99,10 @@ export function AppSidebar({ categories = [], locale = 'en', regions = [], ...pr
 
   return (
     <Sidebar
-      className="!top-[--header-height] !bottom-0 !h-auto"
+      className="!top-[--header-height] !bottom-0 !h-auto border-sidebar-border border"
       {...props}
     >
-      <SidebarHeader className="border-b border-sidebar-border">
+      <SidebarHeader className="">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
@@ -128,7 +128,7 @@ export function AppSidebar({ categories = [], locale = 'en', regions = [], ...pr
         <NavMain items={navMain} />
         <NavSecondary items={data.navSecondary} regions={regions} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter className="flex-shrink-0 border-t">
+      <SidebarFooter className="flex-shrink-0">
         <div className="flex flex-col gap-2">
           <ThemeToggle />
           <NavUser user={data.user} />

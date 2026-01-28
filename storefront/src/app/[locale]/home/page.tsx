@@ -1,6 +1,7 @@
 import { listProducts } from "@/lib/data/products"
-import { getCategoryByHandle } from "@/lib/data/categories"
+import { getCategoryByHandle, listCategories } from "@/lib/data/categories"
 import { HomeProductListing } from "@/components/home-product-listing"
+import { getAllCategoryIdsIncludingChildren } from "@/lib/helpers/get-all-category-ids"
 
 export default async function Page({
     params,
@@ -15,12 +16,19 @@ export default async function Page({
     // If category is specified, look up the category and filter products
     let categoryId: string | undefined
     let categoryName: string | null = null
+    let categoryIds: string[] = []
 
     if (categoryHandle) {
         const category = await getCategoryByHandle(categoryHandle)
         if (category) {
             categoryId = category.id
             categoryName = category.name
+
+            // Fetch all categories to check for children
+            const { categories: allCategories } = await listCategories()
+
+            // Get all category IDs including children for this category
+            categoryIds = getAllCategoryIdsIncludingChildren(allCategories, category.id)
         }
     }
 
@@ -28,7 +36,7 @@ export default async function Page({
     const { response } = await listProducts({
         countryCode: locale,
         queryParams: { limit: 50 },
-        category_id: categoryId,
+        category_id: categoryIds.length > 0 ? categoryIds : categoryId,
     })
 
     return (
