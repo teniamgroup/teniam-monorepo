@@ -65,7 +65,7 @@ export function SiteHeader() {
   const total = cart?.total || 0
 
   return (
-    <header className="bg-background sticky top-0 z-50 flex w-full items-center border-sidebar-border border">
+    <header className="bg-background sticky top-0 z-50 flex w-full items-center border-sidebar-border borderd">
       <div className="flex h-14 w-full items-center gap-2 px-4">
         <Button className="h-8 w-8 text-foreground" variant="ghost" size="icon" onClick={toggleSidebar}>
           <SidebarIcon className="h-5 w-5" />
@@ -132,8 +132,8 @@ export function SiteHeader() {
                     <span className="sr-only">Shopping Cart</span>
                   </Button>
                 </SheetTrigger>
-                <SheetContent className="flex flex-col p-0 h-full">
-                  <SheetHeader className="px-6 py-4 border-b flex-shrink-0">
+                <SheetContent className="flex flex-col p-0 h-full border-sidebar-border border">
+                  <SheetHeader className="px-6 py-4 border-b flex-shrink-0 border-sidebar-border">
                     <SheetTitle className="text-left text-lg font-bold tracking-wide">SHOPPING CART</SheetTitle>
                   </SheetHeader>
 

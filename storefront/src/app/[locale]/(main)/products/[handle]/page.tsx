@@ -53,6 +53,7 @@ import {
 } from "lucide-react"
 import { useCartContext } from "@/components/providers"
 import { toast } from "sonner"
+import Talk from "talkjs"
 
 import { listProducts } from "@/lib/data/products"
 import { listCategories } from "@/lib/data/categories"
@@ -84,11 +85,15 @@ export default function ProductPage() {
   const [chatDialogOpen, setChatDialogOpen] = useState(false)
   const [chatMessage, setChatMessage] = useState("")
   const [chatSent, setChatSent] = useState(false)
+  const [isInitializingChat, setIsInitializingChat] = useState(false)
+  const [chatError, setChatError] = useState<string | null>(null)
+  const [talkSession, setTalkSession] = useState<Talk.Session | null>(null)
   const [linkCopied, setLinkCopied] = useState(false)
   const [categories, setCategories] = useState<any[]>([])
   const [regions, setRegions] = useState<any[]>([])
 
   const reviewsRef = useRef<HTMLDivElement>(null)
+  const chatboxRef = useRef<HTMLDivElement>(null)
 
   // Cart context
   const { addToCart } = useCartContext()
@@ -111,8 +116,8 @@ export default function ProductPage() {
           })
         ])
 
-        setCategories(categories)
-        setRegions(regionsData)
+        setCategories(categories || [])
+        setRegions(regionsData || [])
         if (response.products[0]) {
           setProduct(response.products[0])
         }
@@ -122,8 +127,93 @@ export default function ProductPage() {
         setLoading(false)
       }
     }
+
     fetchData()
   }, [handle, locale])
+
+  // TalkJS session initialization
+  useEffect(() => {
+    const initSession = async () => {
+      if (!product || talkSession) return
+
+      try {
+        await Talk.ready
+        const currentUser = new Talk.User({
+          id: "user_123456",
+          name: "Current User",
+          email: "user@example.com",
+          photoUrl: "/placeholder.svg",
+        })
+
+        const session = new Talk.Session({
+          appId: "tg9ZQZK9",
+          me: currentUser,
+        })
+
+        setTalkSession(session)
+      } catch (error) {
+        console.error("Failed to initialize TalkJS session:", error)
+      }
+    }
+
+    initSession()
+
+    return () => {
+      if (talkSession) {
+        talkSession.destroy()
+        setTalkSession(null)
+      }
+    }
+  }, [product])
+
+  // TalkJS Chatbox mounting
+  useEffect(() => {
+    let chatbox: Talk.Chatbox | undefined
+
+    const mountChatbox = async () => {
+      if (!chatDialogOpen || !chatboxRef.current || !product || !talkSession) {
+        return
+      }
+
+      try {
+        setIsInitializingChat(true)
+        setChatError(null)
+
+        const sellerUser = new Talk.User({
+          id: product.seller?.id || "seller_123",
+          name: product.seller?.name || "Seller",
+          email: product.seller?.email || "seller@example.com",
+          photoUrl: product.seller?.photo || "/placeholder.svg",
+        })
+
+        const conversationId = Talk.oneOnOneId(talkSession.me, sellerUser)
+        const conversation = talkSession.getOrCreateConversation(conversationId)
+
+        conversation.subject = product.title
+        conversation.setParticipant(talkSession.me)
+        conversation.setParticipant(sellerUser)
+
+        chatbox = talkSession.createChatbox()
+        chatbox.select(conversation)
+        chatbox.mount(chatboxRef.current)
+      } catch (error) {
+        console.error("Failed to mount chatbox:", error)
+        setChatError("Failed to initialize chat. Please try again.")
+      } finally {
+        setIsInitializingChat(false)
+      }
+    }
+
+    if (chatDialogOpen) {
+      mountChatbox()
+    }
+
+    return () => {
+      if (chatbox) {
+        chatbox.destroy()
+      }
+    }
+  }, [chatDialogOpen, talkSession, product])
 
   if (loading) {
     return (
@@ -148,6 +238,7 @@ export default function ProductPage() {
     return <NotFound />
   }
 
+  // Helper functions that use product state
   const handlePrevImage = () => {
     setSelectedImage((prev) => (prev === 0 ? product.images?.length - 1 : prev - 1))
   }
@@ -181,17 +272,6 @@ export default function ProductPage() {
         setReportReason("")
         setReportTitle("")
         setReportDescription("")
-      }, 2000)
-    }
-  }
-
-  const handleChatSend = () => {
-    if (chatMessage.trim()) {
-      setChatSent(true)
-      setTimeout(() => {
-        setChatDialogOpen(false)
-        setChatSent(false)
-        setChatMessage("")
       }, 2000)
     }
   }
@@ -294,9 +374,9 @@ export default function ProductPage() {
   ]
 
   const shipping = {
-    free: true,
-    estimatedDays: "3-5 business days",
-    returns: "30-day returns accepted",
+    free: product.seller?.shipping_policy?.free_shipping || false,
+    estimatedDays: product.seller?.shipping_policy?.estimated_days || "3-5 business days",
+    returns: product.seller?.shipping_policy?.returns || "30-day returns accepted",
   }
 
   // Add to cart handler
@@ -319,6 +399,66 @@ export default function ProductPage() {
       toast.error("Failed to add item to cart. Please try again.")
     } finally {
       setIsAddingToCart(false)
+    }
+  }
+
+  // Retry chat initialization
+  const retryChat = () => {
+    setChatError(null)
+    // Force re-initialization by toggling the dialog
+    setChatDialogOpen(false)
+    setTimeout(() => {
+      setChatDialogOpen(true)
+    }, 100)
+  }
+
+  // Handle chat message sending
+  const handleChatSend = async () => {
+    if (!chatMessage.trim() || !product || !talkSession) return
+
+    try {
+      const sellerUser = new Talk.User({
+        id: product.seller?.id || "seller_123",
+        name: product.seller?.name || "Seller",
+        email: product.seller?.email || "seller@example.com",
+        photoUrl: product.seller?.photo || "/placeholder.svg",
+      })
+
+      const conversationId = `conv_${product.id}_${product.seller?.id || 'seller'}`
+      const conversation = talkSession.getOrCreateConversation(conversationId)
+
+      conversation.subject = product.title
+      conversation.setParticipant(talkSession.me)
+      conversation.setParticipant(sellerUser)
+
+      // Use the session's me ID explicitly if possible
+      const meId = talkSession.me.id
+      console.log("Sending message as:", meId)
+
+      // Wait for session to be fully synchronized
+      await new Promise(resolve => setTimeout(resolve, 500))
+
+      try {
+        // Use the session's sendMessage method if available or conversation's
+        // We'll try to ensure the user is fully synchronized
+        await conversation.sendMessage(chatMessage)
+      } catch (sendError) {
+        console.error("SDK sendMessage failed:", sendError)
+        throw sendError
+      }
+
+      setChatSent(true)
+      setChatMessage("")
+
+      setTimeout(() => {
+        setChatSent(false)
+        setChatDialogOpen(false)
+      }, 3000)
+
+      toast.success("Message sent to seller!")
+    } catch (error) {
+      console.error("Failed to send message:", error)
+      toast.error("Failed to send message. Please try again.")
     }
   }
 
@@ -455,7 +595,7 @@ export default function ProductPage() {
                         <Mail className="mr-3 h-4 w-4" />
                         Email
                       </DropdownMenuItem>
-                      {typeof window !== "undefined" && window.navigator && navigator.share && (
+                      {typeof window !== "undefined" && window.navigator && typeof navigator.share === "function" && (
                         <>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem onClick={handleNativeShare} className="cursor-pointer">
@@ -473,14 +613,14 @@ export default function ProductPage() {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`h-4 w-4 ${i < Math.floor(4.8) // Mock rating
+                      className={`h-4 w-4 ${i < Math.floor(product.seller?.rating || 0)
                         ? "fill-amber-400 text-amber-400"
                         : "text-muted-foreground/30"
                         }`}
                     />
                   ))}
                 </div>
-                <span className="text-sm font-medium">4.8</span>
+                <span className="text-sm font-medium">{product.seller?.rating || 0}</span>
                 <button
                   onClick={scrollToReviews}
                   className="text-sm text-muted-foreground hover:text-primary hover:underline transition-colors"
@@ -513,7 +653,7 @@ export default function ProductPage() {
             {/* Size Selection */}
             <div>
               <label className="text-sm font-medium text-foreground">
-                Size: <span className="text-black font-semibold">{selectedSize}</span>
+                Size: <span className="text-muted-foreground">{selectedSize}</span>
               </label>
               <div className="mt-3 flex flex-wrap gap-2">
                 {sizes.map((size) => (
@@ -525,7 +665,7 @@ export default function ProductPage() {
                       : "border-border bg-background text-foreground hover:border-primary/50"
                       }`}
                   >
-                    <span className="text-black font-semibold">{size}</span>
+                    {size}
                   </button>
                 ))}
               </div>
@@ -558,9 +698,9 @@ export default function ProductPage() {
               <div className="mt-3 flex gap-2">
                 <button
                   onClick={() => setSelectedCondition("new")}
-                  className={`rounded-lg border px-4 py-2 text-sm font-semibold transition-all ${selectedCondition === "new"
-                    ? "border-black bg-black text-white"
-                    : "border-gray-300 bg-white text-black hover:border-gray-400"
+                  className={`rounded-lg border px-4 py-2 text-sm font-medium transition-all ${selectedCondition === "new"
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border bg-background text-foreground hover:border-primary/50"
                     }`}
                 >
                   New
@@ -568,8 +708,8 @@ export default function ProductPage() {
                 <button
                   onClick={() => setSelectedCondition("used")}
                   className={`rounded-lg border px-4 py-2 text-sm font-medium transition-all ${selectedCondition === "used"
-                    ? "border-black bg-black text-white"
-                    : "border-gray-300 bg-white text-black hover:border-gray-400"
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border bg-background text-foreground hover:border-primary/50"
                     }`}
                 >
                   Used
@@ -579,18 +719,18 @@ export default function ProductPage() {
 
             {/* Quantity */}
             <div className="flex items-center gap-4">
-              <label className="text-sm font-medium text-black">Quantity</label>
+              <label className="text-sm font-medium text-foreground">Quantity</label>
               <div className="flex items-center gap-2 rounded-lg border border-border">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-2 text-black hover:text-foreground transition-colors"
+                  className="p-2 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <Minus className="h-4 w-4" />
                 </button>
-                <span className="w-8 text-center font-medium text-black">{quantity}</span>
+                <span className="w-8 text-center font-medium">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="p-2 text-black hover:text-foreground transition-colors"
+                  className="p-2 text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <Plus className="h-4 w-4" />
                 </button>
@@ -599,46 +739,34 @@ export default function ProductPage() {
 
             {/* Add to Cart */}
             <div className="flex gap-3">
-              <Button
-                size="lg"
-                className="flex-1 rounded-xl text-base font-semibold bg-black text-white hover:bg-gray-800"
-                onClick={handleAddToCart}
-                disabled={isAddingToCart}
-              >
-                {isAddingToCart ? (
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                    Adding to Cart...
-                  </div>
-                ) : (
-                  "Add to Cart"
-                )}
+              <Button size="lg" className="flex-1 rounded-xl text-base font-semibold">
+                Add to Cart
               </Button>
-              <Button size="lg" variant="outline" className="rounded-xl text-base font-semibold bg-white text-black border-gray-300 hover:bg-gray-50">
+              <Button size="lg" variant="outline" className="rounded-xl text-primary font-semibold bg-transparent">
                 Buy Now
               </Button>
             </div>
 
             {/* Trust badges */}
-            <div className="grid grid-cols-3 gap-4 rounded-xl bg-muted/50 p-4">
+            <div className="grid grid-cols-3 gap-4 rounded-xl bg-muted/50 text-muted-foreground p-4">
               <div className="flex flex-col items-center gap-1 text-center">
-                <Truck className="h-5 w-5 text-black" />
-                <span className="text-xs font-medium text-black">Free Shipping</span>
+                <Truck className="h-5 w-5 text-muted-foreground" />
+                <span className="text-xs font-medium">Free Shipping</span>
               </div>
               <div className="flex flex-col items-center gap-1 text-center">
-                <RotateCcw className="h-5 w-5 text-black" />
-                <span className="text-xs font-medium text-black">30-Day Returns</span>
+                <RotateCcw className="h-5 w-5 text-muted-foreground" />
+                <span className="text-xs font-medium">30-Day Returns</span>
               </div>
               <div className="flex flex-col items-center gap-1 text-center">
-                <ShieldCheck className="h-5 w-5 text-black" />
-                <span className="text-xs font-medium text-black">Buyer Protection</span>
+                <ShieldCheck className="h-5 w-5 text-muted-foreground" />
+                <span className="text-xs font-medium">Buyer Protection</span>
               </div>
             </div>
 
             {/* Product Details Collapsible */}
             <Collapsible open={detailsOpen} onOpenChange={setDetailsOpen}>
               <CollapsibleTrigger className="flex w-full items-center justify-between py-4 text-left">
-                <span className="text-sm font-semibold uppercase tracking-wide">Product Details</span>
+                <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Product Details</span>
                 <Plus className={`h-5 w-5 transition-transform ${detailsOpen ? "rotate-45" : ""}`} />
               </CollapsibleTrigger>
               <CollapsibleContent className="pb-4">
@@ -695,7 +823,7 @@ export default function ProductPage() {
                 </Avatar>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-lg font-semibold text-black">{product.seller?.name}</h3>
+                    <h3 className="text-lg text-muted-foreground">{product.seller?.name}</h3>
                     {product.seller && (
                       <Badge variant="secondary" className="bg-blue-100 text-blue-700">
                         <ShieldCheck className="mr-1 h-3 w-3" />
@@ -703,25 +831,25 @@ export default function ProductPage() {
                       </Badge>
                     )}
                   </div>
-                  <div className="mt-1 flex items-center gap-3 text-sm text-black">
+                  <div className="mt-1 flex items-center gap-3 text-sm text-muted-foreground">
                     <div className="flex items-center gap-1">
                       <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-                      <span className="font-medium text-black">4.9</span>
+                      <span className="font-medium text-foreground">{product.seller?.rating || 0}</span>
                       <button
                         onClick={scrollToReviews}
-                        className="hover:text-primary hover:underline transition-colors text-black"
+                        className="hover:text-primary hover:underline transition-colors"
                       >
                         ({sellerReviews.length} reviews)
                       </button>
                     </div>
                   </div>
-                  <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-black">
+                  <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">
                       <Store className="h-3 w-3" />
-                      {product.seller?.products?.length || 0} sales
+                      {product.seller?.total_sales || 0} sales
                     </span>
                     <span>Member since {new Date(product.seller?.created_at).getFullYear()}</span>
-                    <span>Usually responds within 1 hour</span>
+                    <span>Usually responds within {product.seller?.response_time || "1 hour"}</span>
                   </div>
                 </div>
               </div>
@@ -734,15 +862,15 @@ export default function ProductPage() {
                 </Link>
                 <Dialog open={chatDialogOpen} onOpenChange={setChatDialogOpen}>
                   <DialogTrigger asChild>
-                    <Button className="rounded-xl bg-black text-white hover:bg-gray-800">
+                    <Button className="rounded-xl">
                       <MessageCircle className="mr-2 h-4 w-4" />
                       Chat with Seller
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-md">
+                  <DialogContent className="sm:max-w-md border border-border">
                     {chatSent ? (
                       <div className="flex flex-col items-center justify-center py-8">
-                        <div className="rounded-full bg-green-100 p-3 mb-4">
+                        <div className="rounded-full bg-green-100 dark:bg-green-900/30 p-3 mb-4">
                           <CheckCircle className="h-8 w-8 text-green-600" />
                         </div>
                         <h3 className="text-lg font-semibold text-foreground">Message Sent!</h3>
@@ -752,13 +880,13 @@ export default function ProductPage() {
                       </div>
                     ) : (
                       <>
-                        <DialogHeader>
+                        <DialogHeader className="text-primary">
                           <DialogTitle>Message {product.seller?.name}</DialogTitle>
                           <DialogDescription>
-                            Send a message about this product. Usually responds within 1 hour.
+                            Send a message about this product. Usually responds within {product.seller?.response_time || "1 hour"}.
                           </DialogDescription>
                         </DialogHeader>
-                        <div className="space-y-4 py-4">
+                        <div className="space-y-4 py-4 text-muted-foreground">
                           <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
                             <img
                               src={product.images?.[0]?.url || "/placeholder.svg"}
@@ -787,7 +915,7 @@ export default function ProductPage() {
                           <Button
                             variant="outline"
                             onClick={() => setChatDialogOpen(false)}
-                            className="bg-transparent"
+                            className="bg-transparent text-foreground"
                           >
                             Cancel
                           </Button>

@@ -66,7 +66,7 @@ export function ProductFilters({ onFiltersChange, activeFiltersCount, products =
     // Extract unique sellers from products
     const availableSellers = useMemo(() => {
         const sellerMap = new Map<string, { id: string; name: string; count: number; rating?: number }>()
-        
+
         products.forEach(product => {
             if (product.seller?.id && product.seller?.name) {
                 const existing = sellerMap.get(product.seller.id)
@@ -75,10 +75,10 @@ export function ProductFilters({ onFiltersChange, activeFiltersCount, products =
                 } else {
                     // Calculate average rating from reviews
                     const reviews = product.seller.reviews || []
-                    const avgRating = reviews.length > 0 
-                        ? reviews.reduce((sum, r) => sum + (r?.rating || 0), 0) / reviews.length 
+                    const avgRating = reviews.length > 0
+                        ? reviews.reduce((sum, r) => sum + (r?.rating || 0), 0) / reviews.length
                         : undefined
-                    
+
                     sellerMap.set(product.seller.id, {
                         id: product.seller.id,
                         name: product.seller.name,
@@ -88,14 +88,14 @@ export function ProductFilters({ onFiltersChange, activeFiltersCount, products =
                 }
             }
         })
-        
+
         return Array.from(sellerMap.values()).sort((a, b) => b.count - a.count)
     }, [products])
 
     // Extract unique categories from products
     const availableCategories = useMemo(() => {
         const categoryMap = new Map<string, { id: string; name: string; count: number }>()
-        
+
         products.forEach(product => {
             product.categories?.forEach(category => {
                 if (category.id && category.name) {
@@ -112,7 +112,7 @@ export function ProductFilters({ onFiltersChange, activeFiltersCount, products =
                 }
             })
         })
-        
+
         return Array.from(categoryMap.values()).sort((a, b) => b.count - a.count)
     }, [products])
 
@@ -120,7 +120,7 @@ export function ProductFilters({ onFiltersChange, activeFiltersCount, products =
     const productPriceRange = useMemo(() => {
         let min = Infinity
         let max = 0
-        
+
         products.forEach(product => {
             const price = product.variants?.[0]?.calculated_price?.calculated_amount
             if (price) {
@@ -129,7 +129,7 @@ export function ProductFilters({ onFiltersChange, activeFiltersCount, products =
                 if (priceInDollars > max) max = priceInDollars
             }
         })
-        
+
         return {
             min: min === Infinity ? 0 : Math.floor(min),
             max: max === 0 ? 1000 : Math.ceil(max)
@@ -204,7 +204,7 @@ export function ProductFilters({ onFiltersChange, activeFiltersCount, products =
                     )}
                 </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full sm:max-w-md overflow-y-auto bg-background text-foreground">
+            <SheetContent side="right" className="w-full sm:max-w-md overflow-y-auto bg-background text-foreground border-sidebar-border border">
                 <SheetHeader className="mb-6">
                     <div className="flex items-center justify-between">
                         <SheetTitle className="text-lg font-semibold text-foreground">Filters</SheetTitle>
@@ -461,15 +461,15 @@ export function ProductFilters({ onFiltersChange, activeFiltersCount, products =
 
                 {/* Action Buttons */}
                 <div className="sticky bottom-0 mt-6 flex gap-3 bg-background pt-4 pb-2 border-t">
-                    <Button 
-                        variant="outline" 
-                        className="flex-1 bg-background text-foreground border-border hover:bg-muted" 
+                    <Button
+                        variant="outline"
+                        className="flex-1 bg-background text-foreground border-border hover:bg-muted"
                         onClick={clearFilters}
                     >
                         Clear All
                     </Button>
-                    <Button 
-                        className="flex-1 bg-foreground text-background hover:bg-foreground/90" 
+                    <Button
+                        className="flex-1 bg-foreground text-background hover:bg-foreground/90"
                         onClick={applyFilters}
                     >
                         Show Results

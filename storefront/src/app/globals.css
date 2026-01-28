@@ -247,6 +247,11 @@ button:disabled svg path {
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /* Override bg-primary for dark mode to make it white */
+  .dark {
+    --bg-primary: var(--neutral-0);
+  }
 }
 
 @layer base {
@@ -328,4 +333,67 @@ button:disabled svg path {
 /* Remove border from sidebar menu */
 [data-sidebar="menu"] {
   border-right: none !important;
+}
+
+/* Condition toggle styling for light and dark themes */
+.condition-toggle-new,
+.condition-toggle-used {
+  @apply transition-all duration-200;
+}
+
+/* Light theme condition toggle */
+.light .condition-toggle-new {
+  @apply bg-foreground text-background border-foreground;
+}
+
+.light .condition-toggle-new:hover {
+  @apply bg-foreground/90 border-foreground/90;
+}
+
+.light .condition-toggle-used {
+  @apply bg-background text-foreground border-border;
+}
+
+.light .condition-toggle-used:hover {
+  @apply bg-background/50 border-border/70;
+}
+
+/* Dark theme condition toggle */
+.dark .condition-toggle-new {
+  @apply bg-background text-foreground border-background;
+}
+
+.dark .condition-toggle-new:hover {
+  @apply bg-background/90 border-background/90;
+}
+
+.dark .condition-toggle-used {
+  @apply bg-foreground text-background border-foreground/60;
+}
+
+.dark .condition-toggle-used:hover {
+  @apply bg-foreground/80 border-foreground/70;
+}
+
+/* Fix text visibility issues in product page */
+.product-page .text-black {
+  @apply text-foreground;
+}
+
+.product-page .text-white {
+  @apply text-foreground;
+}
+
+/* Ensure 75% text is visible */
+.product-page .size-button {
+  @apply text-foreground;
+}
+
+/* Dynamic text colors for all sections */
+.product-page .bg-black {
+  @apply bg-foreground text-background;
+}
+
+.product-page .bg-white {
+  @apply bg-background text-foreground;
 }

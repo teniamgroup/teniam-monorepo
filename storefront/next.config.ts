@@ -55,6 +55,18 @@ const nextConfig: NextConfig = {
         hostname: 'images.unsplash.com'
       }
     ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/store/:path*',
+        destination: 'http://localhost:9000/store/:path*'
+      },
+      {
+        source: '/admin/:path*',
+        destination: 'http://localhost:9000/admin/:path*'
+      }
+    ]
   }
 };
 
